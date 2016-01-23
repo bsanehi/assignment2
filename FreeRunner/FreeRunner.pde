@@ -1,8 +1,9 @@
 void setup(){
   size(1000,500);
-  sub_menu_1 = new Menu("Exit");
-  sub_menu_2 = new Menu("View High Score");
-  sub_menu_3 = new Menu("Start Game");
+  start_game = false;
+  sub_menu_1 = new Menu("Exit",1);
+  sub_menu_2 = new Menu("View High Score",2);
+  sub_menu_3 = new Menu("Start Game",3);
   
 }// end setup
 
@@ -22,10 +23,13 @@ void draw(){
   
   background(240,240,240);
 
-  sub_menu_1.render();
-  sub_menu_2.render();
-  sub_menu_3.render();
+  if(start_game == false){
+    sub_menu_1.render();
+    sub_menu_2.render();
+    sub_menu_3.render();
+  }
   
- // println("mouse x = "+ mouseX + "mouse y = "+mouseY);
+  println(start_game);
+  
   
 }// end draw

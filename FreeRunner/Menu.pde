@@ -6,8 +6,10 @@ class Menu {
   float height_menu;
   PVector menu_position;
   float pos;
+  int button_number = 0;
   
-  Menu(String x){
+  Menu(String x,int button_num){
+     this.button_number = button_num;
      this.menu_text = x;
      this.width_menu = width *.4;
      this.height_menu = height * .1;
@@ -31,6 +33,9 @@ class Menu {
       c = color(0,0,0,20);
       if(mousePressed == true){
         c = color(40,215,255);
+        if(button_number == 3){
+          start_game = true;
+        }
       }
     }
     else{
