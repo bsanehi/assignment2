@@ -1,46 +1,57 @@
-class Menu {
+class Menu extends GameObject{
   
-  String menu_text;
-  color c;
   float width_menu;
   float height_menu;
-  PVector menu_position;
-  float pos;
+  float position;
   int button_number = 0;
   
   Menu(String x,int button_num){
      this.button_number = button_num;
-     this.menu_text = x;
+     this.text = x;
      this.width_menu = width *.4;
      this.height_menu = height * .1;
-     this.pos = menu_pos;
-     menu_pos += this.height_menu + 3;
-     this.menu_position = new PVector(width/2 - (width_menu/2),  height/2 -  pos);
+     this.position = menu_pos;
+     menu_pos += this.height_menu  + 4;
+     this.pos = new PVector(width/2 - (width_menu/2),  height/2 - position);
   }
   
   void render(){  
       fill(c);
-      rect(menu_position.x ,  menu_position.y  , width_menu, height_menu );
-      fill(0);
+      rect(pos.x ,  pos.y , width_menu, height_menu );
+      fill(255,255,255);
       textSize(width * 0.02);
       textAlign(CENTER, CENTER);
-      text(menu_text, menu_position.x + (width_menu/2), menu_position.y + (height_menu/2)); 
-      hover();
+      text(text, pos.x + (width_menu/2), pos.y + (height_menu/2)); 
+      update();
   }
   
-  void hover(){
-    if(mouseX >= menu_position.x && mouseX <= (menu_position.x + this.width_menu) && mouseY <= (menu_position.y + this.height_menu) &&  mouseY >= menu_position.y){
-      c = color(0,0,0,20);
+  void update(){
+    if(mouseX >= pos.x && mouseX <= (pos.x + this.width_menu) && mouseY <= (pos.y + this.height_menu) &&  mouseY >= pos.y){
+      c = color(200,0,0,100);
+      
       if(mousePressed == true){
-        c = color(40,215,255);
+        
+        c = color(255,255,255,40);
+        
         if(button_number == 3){
           start_game = true;
         }
+        
+        if(button_number == 2){
+          
+        }
+        
+        if(button_number == 1){
+          
+        }
+        
       }
+      
     }
     else{
-      c = color(255,255,255,50);
+      c = color(255,255,255,60);
     }
-  }
+    
+  }// end hover method
   
 }// end Menu class
