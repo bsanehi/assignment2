@@ -9,7 +9,7 @@ class Sprite extends GameObject{
     this.jump = jump;
     
     dino = createShape(GROUP);
-    
+  
     body = createShape();
     body.beginShape();
     body.noStroke();
@@ -36,20 +36,11 @@ class Sprite extends GameObject{
     body.vertex(10,110);
     body.vertex(10,118);
     body.vertex(3,118);
-    body.vertex(3,150);
-    body.vertex(10,150);
-    body.vertex(10,155);
-    body.vertex(-3,155);
-    body.vertex(-3,135);
-    body.vertex(-11,135);
+    body.vertex(3,128);
+    body.vertex(-3,128);
+    body.vertex(-11,128);
     body.vertex(-11,128);
     body.vertex(-25,128);
-    body.vertex(-25,150);
-    body.vertex(-18,150);
-    body.vertex(-18,155);
-    body.vertex(-31,155);
-    body.vertex(-31,135);
-    body.vertex(-40,135);
     body.vertex(-40,128);
     body.vertex(-50,128);
     body.vertex(-50,120);
