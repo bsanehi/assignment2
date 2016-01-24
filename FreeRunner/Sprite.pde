@@ -1,7 +1,7 @@
 class Sprite extends GameObject{
   
   char jump;
-  PShape dino, body, legs1, eye;
+  PShape dino, body, legs1, legs2, eye;
 
   Sprite(char jump,float size,float startX, float startY){
     
@@ -97,6 +97,28 @@ class Sprite extends GameObject{
     legs1.vertex(-40,135);
     legs1.vertex(-40,126);
     legs1.endShape();
+    
+    legs2 = createShape();
+    legs2.beginShape();
+    legs2.noStroke();
+    legs2.fill(83,83,83);
+    legs2.vertex(3,126);
+    legs2.vertex(3,136);
+    legs2.vertex(12,136);
+    legs2.vertex(12,141);
+    legs2.vertex(-3,141);
+    legs2.vertex(-3,135);
+    legs2.vertex(-11,135);
+    legs2.vertex(-11,128);
+    legs2.vertex(-25,128);
+    legs2.vertex(-25,150);
+    legs2.vertex(-18,150);
+    legs2.vertex(-18,155);
+    legs2.vertex(-31,155);
+    legs2.vertex(-31,135);
+    legs2.vertex(-40,135);
+    legs2.vertex(-40,126); 
+    legs2.endShape();
     
     
     eye = createShape();
