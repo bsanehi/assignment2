@@ -12,17 +12,18 @@ class Menu extends GameObject{
      this.height_menu = height * .1;
      this.position = menu_pos;
      menu_pos += this.height_menu  + 4;
-     this.pos = new PVector(width/2 - (width_menu/2),  height/2 - position);
+    // font = loadFont("SegoeUI-150.vlw");
+     textAlign(CENTER, CENTER);
+    // textFont(font,width * 0.02);
   }
   
   void render(){  
       fill(c);
       rect(pos.x ,  pos.y , width_menu, height_menu );
       fill(255,255,255);
-      textSize(width * 0.02);
-      textAlign(CENTER, CENTER);
       text(text, pos.x + (width_menu/2), pos.y + (height_menu/2)); 
       update();
+      this.pos = new PVector(width/2 - (width_menu/2),  height/2 - position);
   }
   
   void update(){

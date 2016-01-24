@@ -8,11 +8,10 @@
 // You can use abstract classes to ensure that a class has an implementation of the abstract methods
 abstract class GameObject
 {
+  PShape objects;
   PVector pos;
+  PFont font;
   String text;
-  float theta = 0.0f;
-  float w;
-  float halfW;
   float speed = 5.0f;
   color c; 
  
@@ -22,12 +21,17 @@ abstract class GameObject
     this(width * 0.5f, height  * 0.5f, 50);     
   }
   
+  GameObject(float x, float y)
+  {
+    pos = new PVector(x, y);
+  }
+  
   GameObject(float x, float y, float w)
   {
     pos = new PVector(x, y);
-    this.w = w; // Disambiguate w by using this
-    this.halfW = w * 0.5f;
-    this.theta = 0.0f;
+    //this.w = w; // Disambiguate w by using this
+   // this.halfW = w * 0.5f;
+   // this.theta = 0.0f;
   }
   
   abstract void update();  
