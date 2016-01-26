@@ -168,7 +168,20 @@ class Sprite extends GameObject{
     loweye.vertex(40,75);
     loweye.endShape();
     
+    // 5 vertices
+    low_mouth = createShape();
+    low_mouth.beginShape();
+    low_mouth.noStroke();
+    low_mouth.fill(83,83,83);
+    low_mouth.vertex(64,117);
+    low_mouth.vertex(90,117);
+    low_mouth.vertex(90,125);
+    low_mouth.vertex(64,125);
+    low_mouth.vertex(64,117);
+    low_mouth.endShape();
     
+    
+    // 16 vertices
     legs1 = createShape();
     legs1.beginShape();
     legs1.noStroke();
@@ -191,6 +204,7 @@ class Sprite extends GameObject{
     legs1.vertex(-40,126);
     legs1.endShape();
     
+    // 16 vertices
     legs2 = createShape();
     legs2.beginShape();
     legs2.noStroke();
@@ -213,6 +227,7 @@ class Sprite extends GameObject{
     legs2.vertex(-40,126); 
     legs2.endShape();
     
+    // 16 vertices
     legs3 = createShape();
     legs3.beginShape();
     legs3.noStroke();
@@ -233,20 +248,33 @@ class Sprite extends GameObject{
     legs3.vertex(-31,135);
     legs3.vertex(-40,135);
     legs3.vertex(-40,126);
-    legs3.endShape();
+    legs3.endShape(CLOSE);
     
+    // 6 vertices
     eye1 = createShape();
     eye1.beginShape();
     eye1.noStroke();
-    eye1.vertex(12,12);
-    eye1.vertex(20,12);
-    eye1.vertex(20,20);
-    eye1.vertex(12,20);
-    eye1.vertex(12,12);
+    eye1.vertex(10,10);
+    eye1.vertex(17,10);
+    eye1.vertex(17,17);
+    eye1.vertex(10,17);
+    eye1.vertex(10,10);
     eye1.endShape();
     
+    eye2 = createShape();
+    eye2.beginShape();
+    eye2.noStroke();
+    eye2.vertex(10,10);
+    eye2.vertex(22,10);
+    eye2.vertex(22,22);
+    eye2.vertex(10,22);
+    eye2.vertex(10,10);
+    eye2.vertex(10,10);
+    eye2.endShape();
+    
+    
     objects.addChild(body); // 0
-    objects.addChild(eye); // 1
+    objects.addChild(eye1); // 1
     objects.addChild(legs1); // 2
     
     objects.scale(size);  
