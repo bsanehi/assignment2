@@ -1,7 +1,7 @@
 void setup(){
   size(1000,500);
   start_game = false;
-  sub_menu_1 = new Menu("Exit",1);
+ // sub_menu_1 = new Menu("Exit",1);
   sub_menu_2 = new Menu("View High Score",2);
   sub_menu_3 = new Menu("Start Game",3);
   tRex = new Sprite(' ',0.5f,200.0f,200.0f);
@@ -34,7 +34,7 @@ void draw(){
     intro_speed = width *.03;
     
     background(0,0,0);
-    sub_menu_1.render();
+    //sub_menu_1.render();
     sub_menu_2.render();
     sub_menu_3.render();
   }
@@ -51,7 +51,7 @@ void draw(){
   if(intro_animation <= 0){
     
     background(255,255,255);
-     tRex.render();
+    tRex.render();
   }
   
   
