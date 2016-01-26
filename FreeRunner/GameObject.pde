@@ -25,7 +25,8 @@ abstract class GameObject
   GameObject(float x, float y, int scale)
   {
     pos = new PVector(x, y);
-    objects.scale(scale);  
+    objects = createShape(GROUP);
+    this.objects.scale(scale);  
   }
   
   abstract void update();  

@@ -7,25 +7,23 @@ class Sprite extends GameObject{
     // call GameObject
     super(startX,startY,scale);
     
-    objects = createShape(GROUP);
-    
     // 11 vertices
-    head = createShape();
-    head.beginShape();
-    head.noStroke();
-    head.fill(83,83,83);
-    head.vertex(8, 0);
-    head.vertex(55,0);
-    head.vertex(55,10);
-    head.vertex(65,10);
-    head.vertex(65,44);
-    head.vertex(30,44);
-    head.vertex(30,58);
-    head.vertex(-5,58);
-    head.vertex(-5,10);
-    head.vertex(4,10);
-    head.vertex(4,0); 
-    head.endShape();
+    this.head = createShape();
+    this.head.beginShape();
+    this.head.noStroke();
+    this.head.fill(83,83,83);
+    this.head.vertex(8, 0);
+    this.head.vertex(55,0);
+    this.head.vertex(55,10);
+    this.head.vertex(65,10);
+    this.head.vertex(65,44);
+    this.head.vertex(30,44);
+    this.head.vertex(30,58);
+    this.head.vertex(-5,58);
+    this.head.vertex(-5,10);
+    this.head.vertex(4,10);
+    this.head.vertex(4,0); 
+    this.head.endShape();
     
     
     // 5 vertices
@@ -281,13 +279,7 @@ class Sprite extends GameObject{
     eyeBall.vertex(13,19);
     eyeBall.vertex(13,13);
     eyeBall.endShape();
-    
-    
-  //  objects.addChild(body); // 0
-    //objects.addChild(eye1); // 1
-    //objects.addChild(legs1); // 2
-    
- //   objects.scale(size);  
+     
   }
   
   void update(){
@@ -295,7 +287,7 @@ class Sprite extends GameObject{
   };
   
   void render(){
-        shape(objects, pos.x, pos.y);
+       // shape(objects, pos.x, pos.y);
   };
   
 }// end Sprite class
