@@ -109,6 +109,38 @@ class Sprite extends GameObject{
     body.vertex(25,55);
     body.endShape();
     
+    lowbody = createShape();
+    lowbody.beginShape();
+    lowbody.noStroke();
+    lowbody.fill(83,83,83);
+    lowbody.vertex(-80,61);
+    lowbody.vertex(-75,61); 
+    lowbody.vertex(-75,71); 
+    lowbody.vertex(-60,71); 
+    lowbody.vertex(-60,79); 
+    lowbody.vertex(-38,79); 
+    lowbody.vertex(-38,71); 
+    lowbody.vertex(8,71); 
+    lowbody.vertex(8,80);
+    lowbody.vertex(21,80);
+    lowbody.vertex(21,80);
+    lowbody.vertex(36,80);
+    lowbody.vertex(36,120); 
+    lowbody.vertex(24,120); 
+    lowbody.vertex(24,128);  
+    lowbody.vertex(-50,128);
+    lowbody.vertex(-50,120);
+    lowbody.vertex(-58,120);
+    lowbody.vertex(-58,113);
+    lowbody.vertex(-66,113);
+    lowbody.vertex(-66,106);
+    lowbody.vertex(-73,106);
+    lowbody.vertex(-73,98);
+    lowbody.vertex(-80,98);
+    lowbody.vertex(-80,76); 
+    lowbody.endShape();
+    
+    
     legs1 = createShape();
     legs1.beginShape();
     legs1.noStroke();
