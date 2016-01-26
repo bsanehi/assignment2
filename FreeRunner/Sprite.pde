@@ -140,6 +140,34 @@ class Sprite extends GameObject{
     lowbody.vertex(-80,76); 
     lowbody.endShape();
     
+     // 11 vertices
+    lowhead = createShape();
+    lowhead.beginShape();
+    lowhead.noStroke();
+    lowhead.fill(83,83,83);
+    lowhead.vertex(31, 67);
+    lowhead.vertex(95,67);
+    lowhead.vertex(95,77);
+    lowhead.vertex(105,77);
+    lowhead.vertex(105,111);
+    lowhead.vertex(70,111);
+    lowhead.vertex(70,125);
+    lowhead.vertex(35,125);
+    lowhead.vertex(31,77);
+    lowhead.vertex(31,77);
+    lowhead.vertex(31,67); 
+    lowhead.endShape();
+    
+    loweye = createShape();
+    loweye.beginShape();
+    loweye.noStroke();
+    loweye.vertex(40,75);
+    loweye.vertex(47,75);
+    loweye.vertex(47,82);
+    loweye.vertex(40,82);
+    loweye.vertex(40,75);
+    loweye.endShape();
+    
     
     legs1 = createShape();
     legs1.beginShape();
