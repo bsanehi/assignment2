@@ -1,15 +1,14 @@
 class Sprite extends GameObject{
   
-  char jump;
   PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye;
 
-  Sprite(char jump,float size,float startX, float startY){
+  Sprite(float startX, float startY, int scale){
     
-    super(startX, startY);
-    this.jump = jump;
+    // call GameObject
+    super(startX,startY,scale);
     
     objects = createShape(GROUP);
-  
+    
     // 11 vertices
     head = createShape();
     head.beginShape();
@@ -272,12 +271,23 @@ class Sprite extends GameObject{
     eye2.vertex(10,10);
     eye2.endShape();
     
+    eyeBall = createShape();
+    eyeBall.beginShape();
+    eyeBall.fill(83,83,83);
+    eyeBall.noStroke();
+    eyeBall.vertex(13,13);
+    eyeBall.vertex(19,13);
+    eyeBall.vertex(19,19);
+    eyeBall.vertex(13,19);
+    eyeBall.vertex(13,13);
+    eyeBall.endShape();
     
-    objects.addChild(body); // 0
-    objects.addChild(eye1); // 1
-    objects.addChild(legs1); // 2
     
-    objects.scale(size);  
+  //  objects.addChild(body); // 0
+    //objects.addChild(eye1); // 1
+    //objects.addChild(legs1); // 2
+    
+ //   objects.scale(size);  
   }
   
   void update(){

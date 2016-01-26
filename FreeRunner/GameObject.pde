@@ -18,20 +18,14 @@ abstract class GameObject
   GameObject()
   {
     // Constructor chaining
-    this(width * 0.5f, height  * 0.5f, 50);     
+    this(width * 0.5f, height  * 0.5f, 50);   
   }
   
-  GameObject(float x, float y)
-  {
-    pos = new PVector(x, y);
-  }
   
-  GameObject(float x, float y, float w)
+  GameObject(float x, float y, int scale)
   {
     pos = new PVector(x, y);
-    //this.w = w; // Disambiguate w by using this
-   // this.halfW = w * 0.5f;
-   // this.theta = 0.0f;
+    objects.scale(scale);  
   }
   
   abstract void update();  

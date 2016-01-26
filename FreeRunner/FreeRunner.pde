@@ -4,7 +4,7 @@ void setup(){
  // sub_menu_1 = new Menu("Exit",1);
   sub_menu_2 = new Menu("View High Score",2);
   sub_menu_3 = new Menu("Start Game",3);
-  tRex = new Sprite(' ',0.5f,200.0f,200.0f);
+ // tRex = new Sprite(' ',0.5f,200.0f,200.0f);
   
 }// end setup
 
@@ -17,7 +17,7 @@ Menu sub_menu_2;
 Menu sub_menu_3;
 
 // sprite
-Sprite tRex;
+//Sprite t_Rex;
 
 float menu_pos;
 
@@ -42,7 +42,7 @@ void draw(){
   if(start_game == true && intro_animation >= 0){
     
     background(255,255,255);
-    tRex.render();
+   // tRex.render();
     fill(0);
     intro_animation -= intro_speed;
     ellipse(width/2,height/2,intro_animation,intro_animation);
@@ -51,7 +51,7 @@ void draw(){
   if(intro_animation <= 0){
     
     background(255,255,255);
-    tRex.render();
+    //tRex.render();
   }
   
   
