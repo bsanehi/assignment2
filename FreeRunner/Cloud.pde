@@ -3,7 +3,9 @@ class Cloud extends GameObject {
   
   PShape cloud1, cloud2, cloud3, cloud4, cloud5, cloud6;
   
-  Cloud(){
+  Cloud(float x, float y, float scale){
+    
+    super(x,y,scale);
     
     cloud1 = createShape();
     cloud1.beginShape();
@@ -73,15 +75,31 @@ class Cloud extends GameObject {
     cloud5.vertex(125, -37);
     cloud5.endShape();
     
+    cloud6 = createShape();
+    cloud6.beginShape();
+    cloud6.strokeWeight(2);
+    cloud6.vertex(44, -5);
+    cloud6.endShape();
+    
+    objects.addChild(cloud1); 
+    objects.addChild(cloud2);
+    objects.addChild(cloud3); 
+    objects.addChild(cloud4); 
+    objects.addChild(cloud5);
+    objects.addChild(cloud6);
+    
   }
 
+
+
   void update(){
-    
     
   };
   
   void render(){
        
+      shape(objects, pos.x, pos.y);
+    
   };
   
 }
