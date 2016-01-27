@@ -43,6 +43,36 @@ class Cloud extends GameObject {
     cloud2.vertex(128, -38); 
     cloud2.endShape();
     
+    cloud3 = createShape();
+    cloud3.beginShape();
+    cloud3.strokeWeight(2);
+    cloud3.vertex(130, -43);
+    cloud3.vertex(137, -43);
+    cloud3.vertex(137, -38);
+    cloud3.vertex(152, -38);
+    cloud3.vertex(152, -30);
+    cloud3.vertex(162, -30);
+    cloud3.vertex(162, -24);
+    cloud3.vertex(170, -24);
+    cloud3.vertex(170, -15);
+    cloud3.vertex(177, -15);
+    cloud3.vertex(177, -10);
+    cloud3.endShape();
+    
+    cloud4 = createShape();
+    cloud4.beginShape();
+    cloud4.strokeWeight(2);
+    cloud4.vertex(179, -8);
+    cloud4.vertex(179, -3);
+    cloud4.vertex(45, -3);
+    cloud4.endShape();
+    
+    cloud5 = createShape();
+    cloud5.beginShape();
+    cloud5.strokeWeight(2);
+    cloud5.vertex(125, -37);
+    cloud5.endShape();
+    
   }
 
   void update(){
