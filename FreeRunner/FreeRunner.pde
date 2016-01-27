@@ -5,7 +5,7 @@ void setup(){
   sub_menu_2 = new Menu("View High Score",2);
   sub_menu_3 = new Menu("Start Game",3);
  // tRex = new Sprite(' ',0.5f,200.0f,200.0f);
-   tRex = new T_rex(200, height/2, 1, 'w', 's');
+   tRex = new T_rex(100, height/2, 0.5, 'w', 's');
   
 }// end setup
 
@@ -57,6 +57,11 @@ void draw(){
     tRex.render();
   }
   
-  
-  
 }// end draw
+
+
+
+void mousePressed() {
+  // Shrink the shape 90% each time the mouse is pressed
+  tRex.run();
+}

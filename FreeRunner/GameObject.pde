@@ -14,6 +14,7 @@ abstract class GameObject
   String text;
   float speed = 5.0f;
   color c; 
+  float scale;
  
   GameObject()
   {
@@ -22,11 +23,12 @@ abstract class GameObject
   }
   
   
-  GameObject(float x, float y, int scale)
+  GameObject(float x, float y, float scale)
   {
     pos = new PVector(x, y);
     objects = createShape(GROUP);
     this.objects.scale(scale);  
+    this.scale = scale;
   }
   
   abstract void update();  
