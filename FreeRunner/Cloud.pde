@@ -3,13 +3,24 @@ class Cloud extends GameObject {
   
   PShape cloud1, cloud2, cloud3, cloud4, cloud5, cloud6;
   
-  Cloud(float x, float y, float scale){
+  float alpha;
+  
+  float save_pos_x;
+  
+  float cloud_offset = width *0.1f;
+  
+  Cloud(float x, float y, float scale, float alpha, float speed){
     
     super(x,y,scale);
+    
+    this.alpha = alpha;
+    super.speed = speed;
+    save_pos_x = pos.x;
     
     cloud1 = createShape();
     cloud1.beginShape();
     cloud1.strokeWeight(2);
+    cloud1.stroke(c,this.alpha);
     cloud1.vertex(0, 0);
     cloud1.vertex(5, 0);
     cloud1.vertex(5 ,-5);
@@ -19,6 +30,7 @@ class Cloud extends GameObject {
     cloud2 = createShape();
     cloud2.beginShape();
     cloud2.strokeWeight(2);
+    cloud2.stroke(c,this.alpha);
     cloud2.vertex(17, -5);
     cloud2.vertex(22, -5);
     cloud2.vertex(22, -14);
@@ -48,6 +60,7 @@ class Cloud extends GameObject {
     cloud3 = createShape();
     cloud3.beginShape();
     cloud3.strokeWeight(2);
+    cloud3.stroke(c,this.alpha);
     cloud3.vertex(130, -43);
     cloud3.vertex(137, -43);
     cloud3.vertex(137, -38);
@@ -64,6 +77,7 @@ class Cloud extends GameObject {
     cloud4 = createShape();
     cloud4.beginShape();
     cloud4.strokeWeight(2);
+    cloud4.stroke(c,this.alpha);
     cloud4.vertex(179, -8);
     cloud4.vertex(179, -3);
     cloud4.vertex(45, -3);
@@ -72,14 +86,17 @@ class Cloud extends GameObject {
     cloud5 = createShape();
     cloud5.beginShape();
     cloud5.strokeWeight(2);
+    cloud5.stroke(c,this.alpha);
     cloud5.vertex(125, -37);
     cloud5.endShape();
     
     cloud6 = createShape();
     cloud6.beginShape();
     cloud6.strokeWeight(2);
+    cloud6.stroke(c,this.alpha);
     cloud6.vertex(44, -5);
     cloud6.endShape();
+    
     
     objects.addChild(cloud1); 
     objects.addChild(cloud2);
@@ -94,12 +111,20 @@ class Cloud extends GameObject {
 
   void update(){
     
+      pos.x = pos.x - speed;
+      
+      if(pos.x < (0 - cloud_offset)){
+         pos.x = this.save_pos_x;
+         pos.y = random(cloud_offset,height/3);
+      }
+      
   };
   
+  
   void render(){
-       
+      update();
       shape(objects, pos.x, pos.y);
-    
   };
+  
   
 }
