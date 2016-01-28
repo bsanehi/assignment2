@@ -1,9 +1,8 @@
 class Cactus extends Obstacle{
   
-  
   PShape part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12;
   
-  Cactus(){
+  Cactus(int i, int j){
     
     part1 = createShape();
     part1.beginShape();
@@ -223,6 +222,47 @@ class Cactus extends Obstacle{
     part11.vertex(280,120);
     part11.vertex(280,100);
     part11.endShape();
+    
+    part12 = createShape();
+    part12.beginShape();
+    part12.noStroke();
+    part12.fill(83,83,83);
+    part12.vertex(310,160);
+    part12.vertex(330,160);
+    part12.vertex(330,80);
+    part12.vertex(335,80);
+    part12.vertex(335,75);
+    part12.vertex(355,75);
+    part12.vertex(355,80);
+    part12.vertex(360,80);
+    part12.vertex(360,160);
+    part12.vertex(353,160);
+    part12.vertex(353,165);
+    part12.vertex(345,165);
+    part12.vertex(345,170);
+    part12.vertex(338,170);
+    part12.vertex(338,175);
+    part12.vertex(338,180);
+    part12.vertex(310,180); 
+    part12.endShape();
+    
+    
+    objects.addChild(part1); 
+    objects.addChild(part2); 
+    objects.addChild(part3); 
+  
+    objects.addChild(part4); 
+    objects.addChild(part5); 
+    objects.addChild(part6); 
+  
+    objects.addChild(part7); 
+    objects.addChild(part8); 
+    objects.addChild(part9); 
+  
+    objects.addChild(part10); 
+    objects.addChild(part11);
+    objects.addChild(part12); 
+    
   
   }
   
