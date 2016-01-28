@@ -2,16 +2,24 @@ abstract class GameObject
 {
   PShape objects;
   PVector pos;
+  float save_pos;
+  
   PFont font;
   String text;
   float speed = 5.0f;
   color c; 
   float scale;
+  
+  float GRAVITY = 3;
+  float INITIAL_JUMP_VELOCITY = 40;
+  float ACCELERATION = 0.001;
+  int MIN_JUMP_HEIGHT = 35;
+
  
   GameObject()
   {
     // Constructor chaining
-     this(width * 0.5f, height  * 0.5f, 50);   
+     this(width * 0.5f, height  * 0.5f, 50 );   
   }
   
   

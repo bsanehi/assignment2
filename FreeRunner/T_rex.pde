@@ -4,11 +4,11 @@ class T_rex extends Sprite {
   char duck;
   int running;
   
-  T_rex(float startX, float startY, float scale, char jump, char duck){
+  T_rex(float startX, float startY, float scale, char jump, char duck, color colour){
     
       // call Sprite
-      super(startX, startY, scale);
-      
+      super(startX, startY, scale, colour);
+        
       this.jump = jump;
       this.duck = duck;
       
@@ -17,7 +17,10 @@ class T_rex extends Sprite {
       objects.addChild(eye1);
       objects.addChild(body); // 1
       objects.addChild(legs1); // 2
+      
       running = 0;
+      
+      save_pos = startY;
   }
   
   
@@ -28,7 +31,15 @@ class T_rex extends Sprite {
   
   void render(){
     
-      shape(objects, pos.x, pos.y);
+      
+      if( pos.y >= this.save_pos){
+          pos.y = this.save_pos;
+      }
+      else{
+          pos.y += GRAVITY;
+      }
+    
+      shape(objects, super.pos.x, super.pos.y);
 
   }
   
@@ -59,6 +70,7 @@ class T_rex extends Sprite {
   
   void jump(){
     
+    pos.y -= INITIAL_JUMP_VELOCITY ;
   }
   
   

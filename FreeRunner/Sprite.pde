@@ -2,7 +2,7 @@ class Sprite extends GameObject{
   
   PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye;
 
-  Sprite(float startX, float startY, float scale){
+  Sprite(float startX, float startY, float scale, color c){
     
     // call GameObject
     super(startX,startY,scale);
@@ -11,7 +11,7 @@ class Sprite extends GameObject{
     head = createShape();
     head.beginShape();
     head.noStroke();
-    head.fill(83,83,83);
+    head.fill(c);
     head.vertex(8, 0);
     head.vertex(55,0);
     head.vertex(55,10);
@@ -30,7 +30,7 @@ class Sprite extends GameObject{
     mouth1 = createShape();
     mouth1.beginShape();
     mouth1.noStroke();
-    mouth1.fill(83,83,83);
+    mouth1.fill(c);
     mouth1.vertex(24,50);
     mouth1.vertex(50,50);
     mouth1.vertex(50,58);
@@ -43,7 +43,7 @@ class Sprite extends GameObject{
     mouth2 = createShape();
     mouth2.beginShape();
     mouth2.noStroke();
-    mouth2.fill(83,83,83);
+    mouth2.fill(c);
     mouth2.vertex(24,37);
     mouth2.vertex(50,37);
     mouth2.vertex(50,58);
@@ -56,7 +56,7 @@ class Sprite extends GameObject{
     body = createShape();
     body.beginShape();
     body.noStroke();
-    body.fill(83,83,83);
+    body.fill(c);
     body.vertex(25,55);
     body.vertex(25,72);
     body.vertex(45,72);
@@ -109,7 +109,7 @@ class Sprite extends GameObject{
     lowbody = createShape();
     lowbody.beginShape();
     lowbody.noStroke();
-    lowbody.fill(83,83,83);
+    lowbody.fill(c);
     lowbody.vertex(-80,61);
     lowbody.vertex(-75,61); 
     lowbody.vertex(-75,71); 
@@ -141,7 +141,7 @@ class Sprite extends GameObject{
     lowhead = createShape();
     lowhead.beginShape();
     lowhead.noStroke();
-    lowhead.fill(83,83,83);
+    lowhead.fill(c);
     lowhead.vertex(31, 67);
     lowhead.vertex(95,67);
     lowhead.vertex(95,77);
@@ -169,7 +169,7 @@ class Sprite extends GameObject{
     low_mouth = createShape();
     low_mouth.beginShape();
     low_mouth.noStroke();
-    low_mouth.fill(83,83,83);
+    low_mouth.fill(c);
     low_mouth.vertex(64,117);
     low_mouth.vertex(90,117);
     low_mouth.vertex(90,125);
@@ -182,7 +182,7 @@ class Sprite extends GameObject{
     legs1 = createShape();
     legs1.beginShape();
     legs1.noStroke();
-    legs1.fill(83,83,83);
+    legs1.fill(c);
     legs1.vertex(3,126);
     legs1.vertex(3,150);
     legs1.vertex(10,150);
@@ -205,7 +205,7 @@ class Sprite extends GameObject{
     legs2 = createShape();
     legs2.beginShape();
     legs2.noStroke();
-    legs2.fill(83,83,83);
+    legs2.fill(c);
     legs2.vertex(3,126);
     legs2.vertex(3,136);
     legs2.vertex(12,136);
@@ -228,7 +228,7 @@ class Sprite extends GameObject{
     legs3 = createShape();
     legs3.beginShape();
     legs3.noStroke();
-    legs3.fill(83,83,83);
+    legs3.fill(c);
     legs3.vertex(3,126);
     legs3.vertex(3,150);
     legs3.vertex(10,150);
