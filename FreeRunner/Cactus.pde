@@ -40,6 +40,47 @@ class Cactus extends Obstacle{
   part2.vertex(30,180); 
   part2.endShape();
   
+  part3 = createShape();
+  part3.beginShape();
+  part3.noStroke();
+  part3.fill(83,83,83);
+  part3.vertex(-10,160);
+  part3.vertex(-20,160);
+  part3.vertex(-20,90);
+  part3.vertex(-25,90);
+  part3.vertex(-25,85);
+  part3.vertex(-50,85);
+  part3.vertex(-50,90);
+  part3.vertex(-55,90);
+  part3.vertex(-55,160);
+  part3.vertex(-50,160);
+  part3.vertex(-50,165);
+  part3.vertex(-45,165);
+  part3.vertex(-45,170);
+  part3.vertex(-40,170);
+  part3.vertex(-40,175);
+  part3.vertex(-35,175);
+  part3.vertex(-35,180);
+  part3.vertex(0,180);
+  part3.vertex(0,160);
+  part3.vertex(-15,160);
+  part3.endShape();
+  
+  part4 = createShape();
+  part4.beginShape();
+  part4.noStroke();
+  part4.fill(83,83,83);
+  part4.vertex(120, 30);
+  part4.vertex(125, 30);
+  part4.vertex(125, 25);
+  part4.vertex(145, 25);
+  part4.vertex(145, 30);
+  part4.vertex(150, 30);
+  part4.vertex(150, 270);
+  part4.vertex(120, 270);
+  part4.vertex(120,30); 
+  part4.endShape();
+  
   
   
 }
