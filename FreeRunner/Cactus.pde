@@ -141,6 +141,51 @@ class Cactus extends Obstacle{
     part7.vertex(210,270);
     part7.vertex(195,270);
     part7.endShape();
+    
+    part8 = createShape();
+    part8.beginShape();
+    part8.noStroke();
+    part8.fill(83,83,83);
+    part8.vertex(170,200);
+    part8.vertex(170,160);
+    part8.vertex(175,160);
+    part8.vertex(175,155);
+    part8.vertex(180,155);
+    part8.vertex(180,160);
+    part8.vertex(185,160);
+    part8.vertex(185,200);
+    part8.vertex(200,200);
+    part8.vertex(200,215);
+    part8.vertex(185,215);
+    part8.vertex(185,210);
+    part8.vertex(180,210);
+    part8.vertex(180,205);
+    part8.vertex(175,205);
+    part8.vertex(175,200);
+    part8.vertex(170,200);
+    part8.endShape();
+    
+    part9 = createShape();
+    part9.beginShape();
+    part9.noStroke();
+    part9.fill(83,83,83);
+    part9.vertex(220,200);
+    part9.vertex(220,160);
+    part9.vertex(225,160);
+    part9.vertex(225,155);
+    part9.vertex(230,155);
+    part9.vertex(230,160);
+    part9.vertex(235,160);
+    part9.vertex(235,200);
+    part9.vertex(230,200);
+    part9.vertex(230,200);
+    part9.vertex(230,205);
+    part9.vertex(225,205);
+    part9.vertex(225,210);
+    part9.vertex(205,210);
+    part9.vertex(205,200);
+    part9.vertex(220,200);
+    part9.endShape();
   
   }
   
