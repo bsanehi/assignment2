@@ -3,6 +3,7 @@ class T_rex extends GameObject {
   char jump;
   char duck;
   int running;
+  boolean gravity;
   
   PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye;
   
@@ -270,10 +271,9 @@ class T_rex extends GameObject {
       eyeBall.vertex(13,13);
       eyeBall.endShape();
      
-      
-
       this.jump = jump;
       this.duck = duck;
+      this.gravity = true;
       
       objects.addChild(head); // 0
       objects.addChild(mouth1);
@@ -288,22 +288,35 @@ class T_rex extends GameObject {
   
   
   void update(){
-
+    
   }
   
   
   void render(){
-    
-      
-      if( pos.y >= this.save_pos){
-          pos.y = this.save_pos;
-      }
-      else{
-          pos.y += GRAVITY;
-      }
-    
-      shape(objects, super.pos.x, super.pos.y);
 
+    if(this.gravity == false){
+      
+       pos.y-=8;
+       
+       if(pos.y < (save_pos  - 120)){
+         gravity = true;
+       }
+      
+    }
+    
+    if(this.gravity == true){
+      
+         if( pos.y < save_pos){
+              pos.y += GRAVITY;
+         }
+         
+         if(pos.y > save_pos){
+              pos.y = this.save_pos;
+         }
+    }
+    
+    shape(objects, super.pos.x, super.pos.y);
+       
   }
   
   
@@ -333,7 +346,10 @@ class T_rex extends GameObject {
   
   void jump(){
     
-    pos.y -= INITIAL_JUMP_VELOCITY ;
+    if(pos.y == save_pos){
+      this.gravity = false;
+    }
+    
   }
   
   

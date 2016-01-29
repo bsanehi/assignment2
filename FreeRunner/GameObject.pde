@@ -10,10 +10,10 @@ abstract class GameObject
   color c; 
   float scale;
   
-  float GRAVITY = 3;
-  float INITIAL_JUMP_VELOCITY = 40;
-  float ACCELERATION = 0.001;
-  int MIN_JUMP_HEIGHT = 35;
+  final float GRAVITY = 6;
+  final float INITIAL_JUMP_VELOCITY = 40;
+  final float ACCELERATION = 0.001;
+  final int MIN_JUMP_HEIGHT = 35;
 
  
   GameObject()
