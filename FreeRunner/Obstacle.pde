@@ -1,5 +1,12 @@
-class Obstacle extends GameObject{
+class Obstacle extends Cactus{
   
+  
+  
+  Obstacle(){
+    
+    super(1,1);
+    
+  }
   
   void update(){
     

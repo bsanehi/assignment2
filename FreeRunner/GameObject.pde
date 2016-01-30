@@ -15,9 +15,6 @@ abstract class GameObject
   final float ACCELERATION = 0.001;
   final int MIN_JUMP_HEIGHT = 120;
   
-  float element_speed = 3;
-
- 
   GameObject()
   {
     // Constructor chaining

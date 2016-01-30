@@ -2,7 +2,22 @@ class Ground extends GameObject {
   
   PShape part1, part2, part3, part4, bump;
   
-  Ground(){
+  PShape line;
+  
+  Ground(float x, float y, float scale){
+    
+    super(x,y,scale);
+    
+    line = createShape();
+    line.beginShape();
+    line.noStroke();
+    line.fill(83,83,83);
+    line.vertex(0, 0);
+    line.vertex(width, 0);
+    line.vertex(width, 1);
+    line.vertex(0, 1);
+    line.vertex(0, 0);
+    line.endShape();
     
     part1 = createShape();
     part1.beginShape();
@@ -105,6 +120,9 @@ class Ground extends GameObject {
     part4.endShape();
     
     
+    objects.addChild(line); // 0
+   
+    
   }
   
   
@@ -113,7 +131,9 @@ class Ground extends GameObject {
   };
   
   void render(){
-       
+    
+      shape(objects, super.pos.x, super.pos.y);
+      
   };
   
   

@@ -6,7 +6,7 @@ class T_rex extends GameObject {
   boolean running;
   float jump_height;
   
-  PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye;
+  PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye, white_bg;
   
   T_rex(float startX, float startY, float scale, char jump, char duck, color c){
     
@@ -177,23 +177,26 @@ class T_rex extends GameObject {
       legs1 = createShape();
       legs1.beginShape();
       legs1.noStroke();
-      legs1.fill(c);
+      legs1.fill(83,83,83);
       legs1.vertex(3,126);
       legs1.vertex(3,150);
       legs1.vertex(10,150);
       legs1.vertex(10,155);
       legs1.vertex(-3,155);
-      legs1.vertex(-3,135);
+      legs1.vertex(-3,135); 
       legs1.vertex(-11,135);
       legs1.vertex(-11,128);
-      legs1.vertex(-25,128);
-      legs1.vertex(-25,150);
-      legs1.vertex(-18,150);
-      legs1.vertex(-18,155);
-      legs1.vertex(-31,155);
-      legs1.vertex(-31,135);
-      legs1.vertex(-40,135);
-      legs1.vertex(-40,126);
+      legs1.vertex(-18,128);
+      legs1.vertex(-18,135);
+      legs1.vertex(-25,135);
+      legs1.vertex(-25,142);
+      legs1.vertex(-32,142);
+      legs1.vertex(-32,150); 
+      legs1.vertex(-25,150); 
+      legs1.vertex(-25,155); 
+      legs1.vertex(-38,155); 
+      legs1.vertex(-38,135); 
+      legs1.vertex(-38,126); 
       legs1.endShape();
       
       legs2 = createShape();
@@ -207,15 +210,17 @@ class T_rex extends GameObject {
       legs2.vertex(-3,141);
       legs2.vertex(-3,135);
       legs2.vertex(-11,135);
-      legs2.vertex(-11,128);
+      legs2.vertex(-11,128); 
+      legs2.vertex(-18,128);
       legs2.vertex(-25,128);
-      legs2.vertex(-25,150);
-      legs2.vertex(-18,150);
-      legs2.vertex(-18,155);
-      legs2.vertex(-31,155);
-      legs2.vertex(-31,135);
-      legs2.vertex(-40,135);
-      legs2.vertex(-40,126); 
+      legs2.vertex(-25,135); 
+      legs2.vertex(-32,135);
+      legs2.vertex(-32,150); 
+      legs2.vertex(-25,150); 
+      legs2.vertex(-25,155); 
+      legs2.vertex(-38,155); 
+      legs2.vertex(-38,135); 
+      legs2.vertex(-38,126); 
       legs2.endShape();
       
       legs3 = createShape();
@@ -228,16 +233,16 @@ class T_rex extends GameObject {
       legs3.vertex(10,155);
       legs3.vertex(-3,155);
       legs3.vertex(-3,135);
-      legs3.vertex(-11,135);
-      legs3.vertex(-11,128);
-      legs3.vertex(-25,128);
-      legs3.vertex(-25,136);
-      legs3.vertex(-18,136);
-      legs3.vertex(-18,141);
-      legs3.vertex(-31,141);
-      legs3.vertex(-31,135);
-      legs3.vertex(-40,135);
-      legs3.vertex(-40,126);
+      legs3.vertex(-3,128); 
+      legs3.vertex(-18,128); 
+      legs3.vertex(-18,128);
+      legs3.vertex(-18,135);
+      legs3.vertex(-25,135); 
+      legs3.vertex(-25,142);
+      legs3.vertex(-32,142);
+      legs3.vertex(-38,142);
+      legs3.vertex(-38,136);
+      legs3.vertex(-38,126); 
       legs3.endShape();
 
       eye1 = createShape();
@@ -276,6 +281,18 @@ class T_rex extends GameObject {
       this.duck = duck;
       this.gravity = true;
       
+      
+      white_bg = createShape();
+      white_bg.beginShape();
+      white_bg.noStroke();
+      white_bg.fill(255,255,255);
+      white_bg.vertex(-55,128);
+      white_bg.vertex(22,128);
+      white_bg.vertex(22,137);
+      white_bg.vertex(-55,137);
+      white_bg.endShape();
+      
+      
       objects.addChild(head); // 0
       objects.addChild(mouth1);
       objects.addChild(eye1);
@@ -294,11 +311,19 @@ class T_rex extends GameObject {
   
   void render(){
     
-    if(running){
+    if(running && pos.y ==  this.save_pos){
       run();
     }
 
     if(this.gravity == false){
+      
+       objects = new PShape();
+       objects.addChild(head); // 0
+       objects.addChild(mouth1);
+       objects.addChild(eye1);
+       objects.addChild(body); // 1
+       objects.addChild(legs1); // 2
+       this.objects.scale(scale);  
       
        pos.y -=  this.jump_height;
        
@@ -334,18 +359,29 @@ class T_rex extends GameObject {
   
   void run(){
     
-      if(frameCount % 20 == 0 ){
+      if(frameCount % 5 == 0 ){
+         objects = new PShape();
+         objects.addChild(head); // 0
+         objects.addChild(mouth1);
+         objects.addChild(eye1);
+         objects.addChild(body); // 1
+         objects.addChild(white_bg);
+         objects.addChild(legs2); // 2
+         this.objects.scale(scale);  
         
       }
       
-      
-      if(frameCount % 20 == 0 ){
-        
+      if(frameCount % 10 == 0 ){
+         objects = new PShape();
+         objects.addChild(head); // 0
+         objects.addChild(mouth1);
+         objects.addChild(eye1);
+         objects.addChild(body); // 1
+         objects.addChild(white_bg);
+         objects.addChild(legs3); // 2
+         this.objects.scale(scale);  
       }
-      
-      if(frameCount % 20 == 0 ){
-        
-      }
+   
    
   }
   

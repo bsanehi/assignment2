@@ -14,6 +14,8 @@ void setup(){
   cloud3 = new Cloud(480+ width,height/3, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
   cloud4 = new Cloud(700+ width,height/4, 0.3, 55, 1);  // x , y, scale, alpha, cloud speed
   cloud5 = new Cloud(900+ width,height/4, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
+  
+  ground = new Ground(0, height/2 + 40,1);
 
   
 }// end setup
@@ -31,6 +33,9 @@ T_rex tRex;
 
 Cloud cloud1, cloud2, cloud3, cloud4, cloud5;
 
+
+Ground ground;
+
 float menu_pos;
 
 
@@ -41,6 +46,7 @@ float intro_speed;
 
 void draw(){
   
+   background(255,255,255);
   
   if(start_game == false){
     intro_animation = width + (width/5);
@@ -51,10 +57,11 @@ void draw(){
     sub_menu_2.render();
     sub_menu_3.render();
   }
-
+  
+  
   if(start_game == true && intro_animation >= 0){
     
-    background(255,255,255);
+      ground.render();
     
     cloud1.render();
     cloud2.render();
@@ -71,7 +78,7 @@ void draw(){
   
   if(intro_animation <= 0){
     
-    background(255,255,255);
+     ground.render();
     
     cloud1.render();
     cloud2.render();
@@ -82,6 +89,8 @@ void draw(){
     tRex.update();
     tRex.render();
   }
+  
+  
   
 }// end draw
 
