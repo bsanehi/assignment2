@@ -65,7 +65,45 @@ class Ground extends GameObject {
     part2.vertex(10, 0);
     part2.vertex(0, 0);
     part2.endShape();
-  
+    
+    part3 = createShape();
+    part3.beginShape();
+    part3.noStroke();
+    part3.fill(255,255,255);
+    part3.vertex(125, -5);
+    part3.vertex(125, 0);
+    part3.vertex(135, 0);
+    part3.vertex(135, 5);
+    part3.vertex(175, 5);
+    part3.vertex(175, 0);
+    part3.vertex(185, 0);
+    part3.vertex(185, -5);
+    part3.endShape();
+    
+    part4 = createShape();
+    part4.beginShape();
+    part4.noStroke();
+    part4.fill(83,83,83);
+    part4.vertex(120, -5);
+    part4.vertex(125, -5);
+    part4.vertex(125, 0);
+    part4.vertex(135, 0);
+    part4.vertex(135, 5);
+    part4.vertex(175, 5);
+    part4.vertex(175, 0);
+    part4.vertex(185, 0);
+    part4.vertex(185, -5);
+    part4.vertex(185, -5);
+    part4.vertex(190, -5);
+    part4.vertex(190, 5);
+    part4.vertex(180, 5);
+    part4.vertex(180, 10);
+    part4.vertex(130, 10);
+    part4.vertex(130, 5);
+    part4.vertex(120, 5);
+    part4.vertex(120, -5);
+    part4.endShape();
+    
     
   }
   
