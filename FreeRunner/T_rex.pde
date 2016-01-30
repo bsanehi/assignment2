@@ -2,8 +2,9 @@ class T_rex extends GameObject {
   
   char jump;
   char duck;
-  int running;
   boolean gravity;
+  boolean running;
+  float jump_height;
   
   PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye;
   
@@ -281,9 +282,8 @@ class T_rex extends GameObject {
       objects.addChild(body); // 1
       objects.addChild(legs1); // 2
       
-      running = 0;
-      
       save_pos = startY;
+      this.jump_height = INITIAL_JUMP_VELOCITY;
   }
   
   
@@ -293,13 +293,25 @@ class T_rex extends GameObject {
   
   
   void render(){
+    
+    if(running){
+      run();
+    }
 
     if(this.gravity == false){
       
-       pos.y-=8;
+       pos.y -=  this.jump_height;
        
-       if(pos.y < (save_pos  - 120)){
+       if(pos.y < (save_pos  - (MIN_JUMP_HEIGHT/2))){
+         
+           this.jump_height = INITIAL_JUMP_VELOCITY/2;
+           
+           pos.y -= this.jump_height/1.5;
+       }
+       
+       if(pos.y < (save_pos  - MIN_JUMP_HEIGHT)){
          gravity = true;
+         this.jump_height = INITIAL_JUMP_VELOCITY;
        }
       
     }
@@ -322,24 +334,18 @@ class T_rex extends GameObject {
   
   void run(){
     
-    objects = createShape(GROUP);
-    objects.scale(scale);  
-    objects.addChild(head); // 0
-    objects.addChild(mouth1);
-    objects.addChild(eye1);
-    objects.addChild(body); // 1
-    
-    if(running == 0){
+      if(frameCount % 20 == 0 ){
+        
+      }
       
-      running = 1;
-      objects.addChild(legs1); // 2
       
-    }
-    else{
-       //  running = false;
-      objects.addChild(legs2); // 2
-    }
-    
+      if(frameCount % 20 == 0 ){
+        
+      }
+      
+      if(frameCount % 20 == 0 ){
+        
+      }
    
   }
   
@@ -349,6 +355,8 @@ class T_rex extends GameObject {
     if(pos.y == save_pos){
       this.gravity = false;
     }
+   
+    running = true;
     
   }
   

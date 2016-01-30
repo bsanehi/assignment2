@@ -11,9 +11,11 @@ abstract class GameObject
   float scale;
   
   final float GRAVITY = 6;
-  final float INITIAL_JUMP_VELOCITY = 40;
+  final float INITIAL_JUMP_VELOCITY = 12;
   final float ACCELERATION = 0.001;
-  final int MIN_JUMP_HEIGHT = 35;
+  final int MIN_JUMP_HEIGHT = 120;
+  
+  float element_speed = 3;
 
  
   GameObject()
