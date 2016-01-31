@@ -6,8 +6,8 @@ void setup(){
   sub_menu_3 = new Menu("Start Game",3);
   
   
-  tRex = new T_rex(70 , height/2, 0.3, 'w', 's', color(83,83,83) ); // x , y , scale, jump button, duck button , color
-  
+  tRex = new T_rex(70 , height/2 , 0.3, 'w', 's', color(83,83,83) ); // x , y , scale, jump button, duck button , color
+  gameObjects.add(tRex);
   
   cloud1 = new Cloud(100+ width,height/4, 0.4, 50, 1 );  // x , y, scale, alpha, cloud speed
   cloud2 = new Cloud(300+ width,height/3, 0.3, 50 , 1);  // x , y, scale, alpha, cloud speed
@@ -47,7 +47,8 @@ float intro_speed;
 void draw(){
   
    background(255,255,255);
-  
+   
+
   if(start_game == false){
     intro_animation = width + (width/5);
     intro_speed = width *.03;
@@ -58,11 +59,9 @@ void draw(){
     sub_menu_3.render();
   }
   
-  
-  if(start_game == true && intro_animation >= 0){
+  if(start_game == true && intro_animation > 0){
     
-      ground.render();
-    
+    ground.render();
     cloud1.render();
     cloud2.render();
     cloud3.render();
@@ -71,14 +70,16 @@ void draw(){
     
     tRex.update();
     tRex.render();
+    
     fill(0);
     intro_animation -= intro_speed;
     ellipse(width/2,height/2,intro_animation,intro_animation);
   }
   
-  if(intro_animation <= 0){
+  
+  if(start_game == true == true && intro_animation <= 0){
     
-     ground.render();
+    ground.render();
     
     cloud1.render();
     cloud2.render();
@@ -86,8 +87,17 @@ void draw(){
     cloud4.render();
     cloud5.render();
     
-    tRex.update();
-    tRex.render();
+    for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
+    {
+       GameObject go = gameObjects.get(i);
+       go.update();
+       go.render();
+    }
+    
+   // tRex.update();
+   // tRex.render();
+   
+
   }
   
   

@@ -1,4 +1,4 @@
-class Cloud extends GameObject {
+class Cloud extends GameObject{
   
   
   PShape cloud1, cloud2, cloud3, cloud4, cloud5, cloud6;
