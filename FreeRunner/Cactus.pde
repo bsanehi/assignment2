@@ -328,10 +328,9 @@ class Cactus extends GameObject{
         objects.addChild(part12); 
         break;
         
-        
-    }
+    }// end switch
     
-  }
+  }// end Cactus()
   
   
   

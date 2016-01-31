@@ -16,7 +16,7 @@ abstract class GameObject
   float scale_dirt;
   
   
-  final float GRAVITY = 6;
+  final float GRAVITY = 8;
   final float INITIAL_JUMP_VELOCITY = 12;
   final float ACCELERATION = 0.001;
   final int MIN_JUMP_HEIGHT = 120;

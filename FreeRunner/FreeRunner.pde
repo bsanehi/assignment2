@@ -6,8 +6,14 @@ void setup(){
   sub_menu_3 = new Menu("Start Game",3);
   
   
+  
+    
+  ground = new Ground(0, height/2 + 40,1);
+  //gameObjects.add(ground);
+  
+  
   // player
-  tRex = new T_rex(70 , height/2 , 0.3, 'w', 's', color(83,83,83) ); // x , y , scale, jump button, duck button , color
+  tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', color(83,83,83) ); // x , y , scale, jump button, duck button , color
   gameObjects.add(tRex);
   
  
@@ -26,12 +32,7 @@ void setup(){
   cloud5 = new Cloud(900+ width,height/4, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
   gameObjects.add(cloud5);
   
-  
-  
-  
-  ground = new Ground(0, height/2 + 40,1);
 
-  
 }// end setup
 
 
@@ -72,17 +73,21 @@ float intro_speed;
 
 void draw(){
   
-   background(255,255,255);
+  background(255,255,255);
+   
 
   if(start_game == false){
+    
+    background(0,0,0);
+    
     intro_animation = width + (width/5);
     intro_speed = width *.03;
     
-    background(0,0,0);
     sub_menu_1.render();
     sub_menu_2.render();
     sub_menu_3.render();
   }
+  
   
   if(start_game == true && intro_animation > 0){
     
@@ -101,7 +106,7 @@ void draw(){
     
     ground.render();
     
-    for(int i = gameObjects.size() - 1 ; i >= 0   ;i --)
+    for(int i = gameObjects.size() - 1 ; i >= 0   ; i--)
     {
        GameObject go = gameObjects.get(i);
        go.update();
@@ -115,7 +120,7 @@ void draw(){
 
 
 void mousePressed() {
-    tRex.jump();
+   // tRex.jump();
 }
 
 
