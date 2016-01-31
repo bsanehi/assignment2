@@ -37,9 +37,7 @@ class Ground extends GameObject {
        
      }
      
-
-     
-  }
+  }// end Ground()
   
   
   void update(){
@@ -67,8 +65,6 @@ class Ground extends GameObject {
   };
   
   void render(){
-    
-   //   shape(bump, 100, super.pos.y);
     
       if(frameCount % 10 == 0){
         update();

@@ -14,13 +14,13 @@ class Dirt extends GameObject {
   
   void render(){
   
-     if(random(0,1) == 0){
-       fill(c);
-       rect(pos.x,pos.y,scale,scale_dirt);  
-     }
-     else{
+     //if(random(0,1) == 0){
+      // fill(c);
+      // rect(pos.x,pos.y,scale,scale_dirt);  
+    // }
+ //    else{
        ellipse(pos.x,pos.y,1,1);  
-     }
+   //  }
     
   };
   

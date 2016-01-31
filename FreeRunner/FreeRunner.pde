@@ -79,7 +79,7 @@ float intro_speed;
 void draw(){
   
   background(255,255,255);
-   
+  
   if(start_game == false){
     
     background(0,0,0);
