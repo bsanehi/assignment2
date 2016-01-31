@@ -95,7 +95,6 @@ class Cloud extends GameObject{
     cloud6.vertex(44, -5);
     cloud6.endShape();
     
-    
     objects.addChild(cloud1); 
     objects.addChild(cloud2);
     objects.addChild(cloud3); 
@@ -109,18 +108,19 @@ class Cloud extends GameObject{
 
   void update(){
     
-      pos.x = pos.x - speed;
+     pos.x = pos.x - speed;
       
       if(pos.x < (0 - cloud_offset)){
          pos.x = this.save_pos;
          pos.y = random(cloud_offset,height/3);
       }
       
+      
   };
   
   
   void render(){
-      update();
+     // update();
       shape(objects, pos.x, pos.y);
   };
   

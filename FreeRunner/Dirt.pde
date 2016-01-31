@@ -1,16 +1,5 @@
 class Dirt extends GameObject {
   
-  Dirt(){
-
-  }
-  
-  
-  Dirt(float speed){
-    
-     this.speed = super.speed;
-  }
-  
-  
   void update(){
     
     pos.x -= super.speed;

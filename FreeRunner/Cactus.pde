@@ -2,7 +2,7 @@ class Cactus extends GameObject{
   
   PShape part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12;
   
-  Cactus(int i, int j){
+  Cactus(float x, float y, float scale){
     
     part1 = createShape();
     part1.beginShape();
@@ -247,33 +247,108 @@ class Cactus extends GameObject{
     part12.endShape();
     
     
-    objects.addChild(part1); 
-    objects.addChild(part2); 
-    objects.addChild(part3); 
-  
-    objects.addChild(part4); 
-    objects.addChild(part5); 
-    objects.addChild(part6); 
-  
-    objects.addChild(part7); 
-    objects.addChild(part8); 
-    objects.addChild(part9); 
-  
-    objects.addChild(part10); 
-    objects.addChild(part11);
-    objects.addChild(part12); 
+    int i = (int) random(0, 8);
+    switch (i)
+    {
+      case 1:
+        objects  = new PShape();
+        objects.addChild(part1); 
+        objects.addChild(part2); 
+        objects.addChild(part3); 
+        break;
+        
+      case 2:
+        objects  = new PShape();
+        objects.addChild(part4); 
+        objects.addChild(part5); 
+        objects.addChild(part6); 
+        break;
+        
+      case 3:
+        objects  = new PShape();
+        objects.addChild(part7); 
+        objects.addChild(part8); 
+        objects.addChild(part9); 
+        break;
+        
+      case 4:
+        objects = new PShape();
+        objects.addChild(part10); 
+        objects.addChild(part11); 
+        objects.addChild(part12); 
+        break;
+        
+        
+      case 5:
+        objects  = new PShape();
+        objects.addChild(part7); 
+        objects.addChild(part8); 
+        objects.addChild(part9); 
+        objects.addChild(part10); 
+        objects.addChild(part11); 
+        objects.addChild(part12); 
+        break;
+        
+      case 6:
+        objects  = new PShape();
+        objects.addChild(part1); 
+        objects.addChild(part2); 
+        objects.addChild(part3); 
+        objects.addChild(part4); 
+        objects.addChild(part5); 
+        objects.addChild(part6); 
+        break;
+        
+      case 7:
+        objects  = new PShape();
+        objects.addChild(part1); 
+        objects.addChild(part2); 
+        objects.addChild(part3); 
+        objects.addChild(part4); 
+        objects.addChild(part5); 
+        objects.addChild(part6); 
+        objects.addChild(part7); 
+        objects.addChild(part8); 
+        objects.addChild(part9); 
+        break;
+        
+      case 8:
+        objects  = new PShape();
+        objects.addChild(part1); 
+        objects.addChild(part2); 
+        objects.addChild(part3); 
+        objects.addChild(part4); 
+        objects.addChild(part5); 
+        objects.addChild(part6); 
+        objects.addChild(part7); 
+        objects.addChild(part8); 
+        objects.addChild(part9); 
+        objects.addChild(part10); 
+        objects.addChild(part11); 
+        objects.addChild(part12); 
+        break;
+        
+        
+    }
     
-  
   }
   
   
   
   void update(){
     
+    pos.x -= super.speed;
+
+    if (pos.x < -50)
+    {
+       // remove
+       gameObjects.remove(this);
+    }
+    
   };
   
   void render(){
-       
+      shape(objects, super.pos.x, super.pos.y);
   };
   
   

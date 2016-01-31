@@ -37,7 +37,6 @@ abstract class GameObject
     this.scale = scale;
   }
   
-
   
   abstract void update();  
   abstract void render();

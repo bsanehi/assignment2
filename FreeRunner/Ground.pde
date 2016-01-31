@@ -29,7 +29,7 @@ class Ground extends GameObject {
      
      for(int i=0; i< 30; i++){
        
-       Dirt dirt = new Dirt(0);
+       Dirt dirt = new Dirt();
        dirt.pos.x = random(0, width);
        dirt.pos.y = random(dirt_y + 4,dirt_y + 15);
        dirt.scale = random(1,2);
