@@ -11,7 +11,8 @@ void setup(){
   sub_menu_2 = new Menu("View High Score",2);
   sub_menu_3 = new Menu("Start Game",3);
   
-  
+  score = new Score();
+  gameObjects.add(score);
   
   ground = new Ground(0, height/2 + 40,1);
   //gameObjects.add(ground);
@@ -67,6 +68,8 @@ T_rex tRex;
 Cloud cloud1, cloud2, cloud3, cloud4, cloud5;
 
 Ground ground;
+
+Score score;
 
 
 float menu_pos;

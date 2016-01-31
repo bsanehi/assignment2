@@ -6,12 +6,14 @@ class Score extends GameObject{
     
     score = 0;
     player = minim.loadFile("sounds/achievement.mp3");
+    font = loadFont("fonts/PressStart2P-150.vlw");
+    textAlign(CENTER, CENTER);
   }
 
   
   void update(){
     
-    if(frameCount % 10 == 0){
+    if(frameCount % 4 == 0){
       
       score++;
       
@@ -25,8 +27,10 @@ class Score extends GameObject{
   };
   
   void render(){
- //    String.format("%05d", score);
-     println(String.format("%05d", score));
+     fill(83,83,83);
+     text = String.format("%05d", score);
+     textFont(font,width * 0.02);
+     text(text,width *.90, 50); 
   };
   
 }

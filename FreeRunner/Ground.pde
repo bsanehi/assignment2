@@ -37,7 +37,7 @@ class Ground extends GameObject {
        
      }
      
-  }// end Ground()
+  }
   
   
   void update(){
