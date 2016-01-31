@@ -105,7 +105,6 @@ class Cloud extends GameObject{
   }
 
 
-
   void update(){
     
      pos.x = pos.x - speed;
@@ -115,7 +114,6 @@ class Cloud extends GameObject{
          pos.y = random(cloud_offset,height/3);
       }
       
-      
   };
   
   
@@ -124,5 +122,4 @@ class Cloud extends GameObject{
       shape(objects, pos.x, pos.y);
   };
   
-  
-}
+}// end Cloud class

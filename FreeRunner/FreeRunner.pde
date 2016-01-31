@@ -1,13 +1,18 @@
+import ddf.minim.*;
+
+Minim minim;
+
 void setup(){
   size(1000,500);
   start_game = false;
+  
+  minim = new Minim(this);
   sub_menu_1 = new Menu("Settings",1);
   sub_menu_2 = new Menu("View High Score",2);
   sub_menu_3 = new Menu("Start Game",3);
   
   
   
-    
   ground = new Ground(0, height/2 + 40,1);
   //gameObjects.add(ground);
   
@@ -75,7 +80,6 @@ void draw(){
   
   background(255,255,255);
    
-
   if(start_game == false){
     
     background(0,0,0);
@@ -116,7 +120,6 @@ void draw(){
   }
   
 }// end draw
-
 
 
 void mousePressed() {

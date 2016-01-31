@@ -5,6 +5,7 @@ class Menu extends GameObject{
   float position;
   int button_number = 0;
   
+  
   Menu(String x,int button_num){
      this.button_number = button_num;
      this.text = x;
@@ -15,6 +16,7 @@ class Menu extends GameObject{
     // font = loadFont("SegoeUI-150.vlw");
      textAlign(CENTER, CENTER);
     // textFont(font,width * 0.02);
+    player = minim.loadFile("sounds/jump.mp3");
   }
   
   void render(){  
@@ -30,6 +32,9 @@ class Menu extends GameObject{
     if(mouseX >= pos.x && mouseX <= (pos.x + this.width_menu) && mouseY <= (pos.y + this.height_menu) &&  mouseY >= pos.y){
       c = color(200,0,0,100);
       
+      player.rewind();
+      player.play();
+
       if(mousePressed == true){
         
         c = color(255,255,255,40);

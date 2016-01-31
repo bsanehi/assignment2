@@ -191,7 +191,7 @@ class T_rex extends GameObject {
       arm.endShape();
       
       
-       lowlegs2 = createShape();
+      lowlegs2 = createShape();
       lowlegs2.beginShape();
       lowlegs2.noStroke();
       lowlegs2.fill(c);
@@ -344,7 +344,6 @@ class T_rex extends GameObject {
       this.duck = duck;
       this.gravity = true;
       
-      
       white_bg = createShape();
       white_bg.beginShape();
       white_bg.noStroke();
@@ -365,6 +364,8 @@ class T_rex extends GameObject {
       save_pos = startY;
       this.jump_height = INITIAL_JUMP_VELOCITY;
       this.standing = true;
+      
+      player = minim.loadFile("sounds/jump.mp3");
   }
   
   
@@ -377,17 +378,17 @@ class T_rex extends GameObject {
     if (keys[jump] || keys[' '])
     {
        jump();
-    }
-    
-    else if (keys[duck])
-    {
+       
+    } else if (keys[duck]){
+      
       duck();
       
-    }else{
+    } else{
+      
       standing = true;
     }
     
-  }
+  }// end update();
   
   
   void render(){
@@ -489,18 +490,19 @@ class T_rex extends GameObject {
            objects.addChild(arm); 
            objects.addChild(lowlegs3); 
            this.objects.scale(scale);  
-        }
+        }// end if
       
-    }
+    }// end else
    
-   
-  }
+  }// end run()
   
   
   void jump(){
     
     if(pos.y == save_pos){
       this.gravity = false;
+      player.rewind();
+      player.play();
     }
    
     running = true;
