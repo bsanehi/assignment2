@@ -37,10 +37,7 @@ class Ground extends GameObject {
        
      }
      
-      Bumps bump = new Bumps(0.3);
-      bump.pos.x = width/2;
-      bump.pos.y = dirt_y + 1;
-      gameObjects.add(bump);
+
      
   }
   

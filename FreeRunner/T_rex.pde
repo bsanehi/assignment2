@@ -7,7 +7,7 @@ class T_rex extends GameObject {
   float jump_height;
   boolean standing;
   
-  PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye, white_bg;
+  PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye, white_bg, arm, lowlegs2, lowlegs3;
   
   T_rex(float startX, float startY, float scale, char jump, char duck, color c){
     
@@ -177,6 +177,66 @@ class T_rex extends GameObject {
       low_mouth.vertex(64,114);
       low_mouth.endShape();
       
+      arm = createShape();
+      arm.beginShape();
+      arm.fill(c);
+      arm.noStroke();
+      arm.vertex(13,127);
+      arm.vertex(18, 127);
+      arm.vertex(18, 134);
+      arm.vertex(23,134);
+      arm.vertex(23,139);
+      arm.vertex(13,139);
+      arm.vertex(13,127);
+      arm.endShape();
+      
+      
+       lowlegs2 = createShape();
+      lowlegs2.beginShape();
+      lowlegs2.noStroke();
+      lowlegs2.fill(c);
+      lowlegs2.vertex(-8,126);
+      lowlegs2.vertex(-8,133);
+      lowlegs2.vertex(-3,133);
+      lowlegs2.vertex(-3,138);
+      lowlegs2.vertex(-15,138);
+      lowlegs2.vertex(-15,130); 
+      lowlegs2.vertex(-22,130);
+      lowlegs2.vertex(-22,135);
+      lowlegs2.vertex(-27,135);
+      lowlegs2.vertex(-27,140);
+      lowlegs2.vertex(-32,140);
+      lowlegs2.vertex(-32,145);
+      lowlegs2.vertex(-27,145);
+      lowlegs2.vertex(-27,150);
+      lowlegs2.vertex(-38,150);
+      lowlegs2.vertex(-38,126); 
+      lowlegs2.endShape();
+      
+      lowlegs3 = createShape();
+      lowlegs3.beginShape();
+      lowlegs3.noStroke();
+      lowlegs3.fill(c);
+      lowlegs3.vertex(-5,125); 
+      lowlegs3.vertex(-5,132);
+      lowlegs3.vertex(-10,132);
+      lowlegs3.vertex(-10,138);
+      lowlegs3.vertex(-15,138);
+      lowlegs3.vertex(-15,143);
+      lowlegs3.vertex(-20,143);
+      lowlegs3.vertex(-20,148);
+      lowlegs3.vertex(-15,148);
+      lowlegs3.vertex(-15,153);
+      lowlegs3.vertex(-25,153);
+      lowlegs3.vertex(-25,125);
+      lowlegs3.vertex(-35,125);
+      lowlegs3.vertex(-38,125);
+      lowlegs3.vertex(-38,132);
+      lowlegs3.vertex(-33,132);
+      lowlegs3.vertex(-33,138);
+      lowlegs3.vertex(-45,138);
+      lowlegs3.vertex(-45,125);
+      
       legs1 = createShape();
       legs1.beginShape();
       legs1.noStroke();
@@ -314,7 +374,7 @@ class T_rex extends GameObject {
        running = true;
     }
     
-    if (keys[jump])
+    if (keys[jump] || keys[' '])
     {
        jump();
     }
@@ -384,24 +444,23 @@ class T_rex extends GameObject {
       
       if(frameCount % 5 == 0 ){
          objects = new PShape();
-         objects.addChild(head); // 0
+         objects.addChild(head); 
          objects.addChild(mouth1);
          objects.addChild(eye1);
-         objects.addChild(body); // 1
+         objects.addChild(body); 
          objects.addChild(white_bg);
-         objects.addChild(legs2); // 2
+         objects.addChild(legs2); 
          this.objects.scale(scale);  
-        
       }
       
       if(frameCount % 10 == 0 ){
          objects = new PShape();
-         objects.addChild(head); // 0
+         objects.addChild(head); 
          objects.addChild(mouth1);
          objects.addChild(eye1);
-         objects.addChild(body); // 1
+         objects.addChild(body); 
          objects.addChild(white_bg);
-         objects.addChild(legs3); // 2
+         objects.addChild(legs3); 
          this.objects.scale(scale);  
       }
       
@@ -410,23 +469,25 @@ class T_rex extends GameObject {
       
         if(frameCount % 5 == 0 ){
            objects = new PShape();
-           objects.addChild(lowhead); // 0
+           objects.addChild(lowhead); 
            objects.addChild(low_mouth);
            objects.addChild(loweye);
-           objects.addChild(lowbody); // 1
+           objects.addChild(lowbody); 
            objects.addChild(white_bg);
-           objects.addChild(legs2); // 2
+           objects.addChild(arm); 
+           objects.addChild(lowlegs2); 
            this.objects.scale(scale);  
         }
         
         if(frameCount % 10 == 0 ){
            objects = new PShape();
-           objects.addChild(lowhead); // 0
+           objects.addChild(lowhead); 
            objects.addChild(low_mouth);
            objects.addChild(loweye);
-           objects.addChild(lowbody); // 1
+           objects.addChild(lowbody); 
            objects.addChild(white_bg);
-           objects.addChild(legs3); // 2
+           objects.addChild(arm); 
+           objects.addChild(lowlegs3); 
            this.objects.scale(scale);  
         }
       

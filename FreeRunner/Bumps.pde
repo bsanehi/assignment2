@@ -111,7 +111,6 @@ class Bumps extends GameObject{
     objects.addChild(part2);
     objects.addChild(part3);
     objects.addChild(part4);
-    
     this.objects.scale(scale);
     
   }
