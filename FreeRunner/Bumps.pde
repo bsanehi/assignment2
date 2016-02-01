@@ -1,9 +1,9 @@
-class Bumps extends GameObject{
+class Bumps extends Ground{
   
   PShape part1, part2, part3, part4;
   
   Bumps(float scale){
-
+    
     objects = createShape(GROUP);
     
     part1 = createShape();
@@ -118,6 +118,8 @@ class Bumps extends GameObject{
     
   void update(){
     
+    //super.speed += ACCELERATION;
+   
     pos.x -= super.speed;
 
     if (pos.x < -50)

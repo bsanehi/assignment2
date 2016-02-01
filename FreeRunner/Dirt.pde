@@ -1,6 +1,9 @@
-class Dirt extends GameObject {
+class Dirt extends Ground {
+  
   
   void update(){
+    
+    //speed += ACCELERATION;
     
     pos.x -= super.speed;
 
@@ -13,7 +16,7 @@ class Dirt extends GameObject {
   };
   
   void render(){
-  
+    
      //if(random(0,1) == 0){
       // fill(c);
       // rect(pos.x,pos.y,scale,scale_dirt);  

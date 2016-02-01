@@ -17,7 +17,6 @@ abstract class GameObject
   
   AudioPlayer player;
   
-  
   final float GRAVITY = 8;
   final float INITIAL_JUMP_VELOCITY = 12;
   final float ACCELERATION = 0.001;

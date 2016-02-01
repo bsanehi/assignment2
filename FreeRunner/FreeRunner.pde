@@ -15,7 +15,7 @@ void setup(){
   gameObjects.add(score);
   
   ground = new Ground(0, height/2 + 40,1);
-  //gameObjects.add(ground);
+  gameObjects.add(ground);
   
   
   // player
@@ -111,11 +111,16 @@ void draw(){
   
   if(start_game == true && intro_animation <= 0){
     
-    ground.render();
+   // ground.render();
     
     for(int i = gameObjects.size() - 1 ; i >= 0   ; i--)
     {
+       
        GameObject go = gameObjects.get(i);
+       if (go instanceof Bumps || go instanceof Dirt){
+       //  go.speed += 1;
+       }
+       
        go.update();
        go.render();
     }   
