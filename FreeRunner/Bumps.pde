@@ -106,34 +106,28 @@ class Bumps extends Ground{
     part4.vertex(120, -5);
     part4.endShape();
     
-    
     objects.addChild(part1);
     objects.addChild(part2);
     objects.addChild(part3);
     objects.addChild(part4);
     this.objects.scale(scale);
     
-  }
+  }// end Bump constructor
   
     
   void update(){
     
-    //super.speed += ACCELERATION;
-   
     pos.x -= super.speed;
 
-    if (pos.x < -50)
-    {
-       // remove
+    if (pos.x < -50){
        gameObjects.remove(this);
     }
     
   };
   
   void render(){
-     
      shape(objects, super.pos.x, super.pos.y);
   };
   
   
-}
+}// end Bumps class

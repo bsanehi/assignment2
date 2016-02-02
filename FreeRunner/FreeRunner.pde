@@ -14,7 +14,7 @@ void setup(){
   score = new Score();
   gameObjects.add(score);
   
-  ground = new Ground(0, height/2 + 40,1);
+  ground = new Ground(0, height/2 + 40,0.02);
   gameObjects.add(ground);
   
   

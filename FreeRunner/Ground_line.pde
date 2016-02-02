@@ -5,11 +5,9 @@ class Ground_line extends Ground{
    
    Ground_line(float x, float y, float scale){
     
-       pos.x = x;
-       pos.y = y;
+       this.pos.x = x;
+       this.pos.y = y;
        
-     
-     
        line = createShape();
        line.beginShape();
        line.noStroke();
@@ -23,20 +21,17 @@ class Ground_line extends Ground{
        
        objects.addChild(line); 
        objects.scale(scale);
-   }
+       
+   }// end Ground_line constructor
    
    
   void render(){
-    
       shape(objects, super.pos.x, super.pos.y); 
-     
   };
   
   
   void update(){
-    
-    // shape(objects, super.pos.x, super.pos.y); 
-     
+      gameObjects.remove(this); // remove it, new one Ground_line is called in Ground Update method
   };
   
   

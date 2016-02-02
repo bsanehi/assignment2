@@ -1,19 +1,16 @@
 class Dirt extends Ground {
   
-  
   void update(){
-    
-    //speed += ACCELERATION;
     
     pos.x -= super.speed;
 
     if (pos.x < 0)
     {
-       // remove
        gameObjects.remove(this);
     }
     
   };
+  
   
   void render(){
     

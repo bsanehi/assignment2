@@ -278,7 +278,6 @@ class Cactus extends GameObject{
         objects.addChild(part12); 
         break;
         
-        
       case 5:
         objects  = new PShape();
         objects.addChild(part7); 
@@ -330,6 +329,7 @@ class Cactus extends GameObject{
         
     }// end switch
     
+    
   }// end Cactus()
   
   
@@ -351,6 +351,4 @@ class Cactus extends GameObject{
   };
   
   
-  
-  
-}
+}// end Cactus class
