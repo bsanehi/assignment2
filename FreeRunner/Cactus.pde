@@ -1,8 +1,22 @@
-class Cactus extends GameObject{
+class Cactus extends Obstacle{
   
-  PShape part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12;
+  PShape part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part1_w_bg,  part4_w_bg, part7_w_bg, part10_w_bg;
   
   Cactus(float x, float y, float scale){
+    
+    this.scale = scale;
+    this.pos.x = x;
+    this.pos.y = y;
+    
+    part1_w_bg = createShape();
+    part1_w_bg.beginShape();
+    part1_w_bg.noStroke();
+    part1_w_bg.fill(255,255,255);
+    part1_w_bg.vertex(40,170);
+    part1_w_bg.vertex(-10,170);
+    part1_w_bg.vertex(-10,270);
+    part1_w_bg.vertex(40,270);
+    part1_w_bg.endShape();
     
     part1 = createShape();
     part1.beginShape();
@@ -67,6 +81,17 @@ class Cactus extends GameObject{
     part3.vertex(-15,160);
     part3.endShape();
     
+    
+    part4_w_bg = createShape();
+    part4_w_bg.beginShape();
+    part4_w_bg.noStroke();
+    part4_w_bg.fill(255,255,255);
+    part4_w_bg.vertex(115,180);
+    part4_w_bg.vertex(155,180);
+    part4_w_bg.vertex(155,270);
+    part4_w_bg.vertex(115,270);
+    part4_w_bg.endShape();
+    
     part4 = createShape();
     part4.beginShape();
     part4.noStroke();
@@ -125,6 +150,17 @@ class Cactus extends GameObject{
     part6.vertex(145,125);
     part6.vertex(145,110);
     part6.endShape();
+    
+    
+    part7_w_bg = createShape();
+    part7_w_bg.beginShape();
+    part7_w_bg.noStroke();
+    part7_w_bg.fill(255,255,255);
+    part7_w_bg.vertex(190,190);
+    part7_w_bg.vertex(215,190);
+    part7_w_bg.vertex(215,270);
+    part7_w_bg.vertex(190,270);
+    part7_w_bg.endShape();
     
     part7 = createShape();
     part7.beginShape();
@@ -185,6 +221,17 @@ class Cactus extends GameObject{
     part9.vertex(205,200);
     part9.vertex(220,200);
     part9.endShape();
+    
+    
+    part10_w_bg = createShape();
+    part10_w_bg.beginShape();
+    part10_w_bg.noStroke();
+    part10_w_bg.fill(255,255,255);
+    part10_w_bg.vertex(270,170);
+    part10_w_bg.vertex(320,170);
+    part10_w_bg.vertex(320,270);
+    part10_w_bg.vertex(270,270);
+    part10_w_bg.endShape();
     
     part10 = createShape();
     part10.beginShape();
@@ -252,80 +299,104 @@ class Cactus extends GameObject{
     {
       case 1:
         objects  = new PShape();
+        objects.addChild(part1_w_bg);
         objects.addChild(part1); 
         objects.addChild(part2); 
         objects.addChild(part3); 
+        objects.scale(scale);
         break;
         
       case 2:
         objects  = new PShape();
+        objects.addChild(part4_w_bg);
         objects.addChild(part4); 
         objects.addChild(part5); 
         objects.addChild(part6); 
+        objects.scale(scale);
         break;
         
       case 3:
         objects  = new PShape();
+        objects.addChild(part7_w_bg);
         objects.addChild(part7); 
         objects.addChild(part8); 
         objects.addChild(part9); 
+        objects.scale(scale);
         break;
         
       case 4:
         objects = new PShape();
+        objects.addChild(part10_w_bg);
         objects.addChild(part10); 
         objects.addChild(part11); 
         objects.addChild(part12); 
+        objects.scale(scale);
         break;
         
       case 5:
         objects  = new PShape();
+        objects.addChild(part7_w_bg);
         objects.addChild(part7); 
         objects.addChild(part8); 
-        objects.addChild(part9); 
+        objects.addChild(part9);
+        objects.addChild(part10_w_bg);
         objects.addChild(part10); 
         objects.addChild(part11); 
         objects.addChild(part12); 
+        objects.scale(scale);
         break;
         
       case 6:
         objects  = new PShape();
+        objects.addChild(part1_w_bg);
         objects.addChild(part1); 
         objects.addChild(part2); 
-        objects.addChild(part3); 
+        objects.addChild(part3);
+        objects.addChild(part4_w_bg);
         objects.addChild(part4); 
         objects.addChild(part5); 
         objects.addChild(part6); 
+        objects.scale(scale);
         break;
         
       case 7:
         objects  = new PShape();
+        objects.addChild(part1_w_bg);
         objects.addChild(part1); 
         objects.addChild(part2); 
         objects.addChild(part3); 
+        objects.addChild(part4_w_bg);
         objects.addChild(part4); 
         objects.addChild(part5); 
         objects.addChild(part6); 
+        objects.addChild(part7_w_bg);
         objects.addChild(part7); 
         objects.addChild(part8); 
         objects.addChild(part9); 
+        objects.scale(scale);
         break;
         
       case 8:
-        objects  = new PShape();
+        objects = new PShape();
+        objects.addChild(part1_w_bg);
         objects.addChild(part1); 
         objects.addChild(part2); 
         objects.addChild(part3); 
+        objects.addChild(part4_w_bg);
         objects.addChild(part4); 
         objects.addChild(part5); 
         objects.addChild(part6); 
+        objects.addChild(part7_w_bg);
         objects.addChild(part7); 
         objects.addChild(part8); 
         objects.addChild(part9); 
+        objects.addChild(part10_w_bg);
         objects.addChild(part10); 
         objects.addChild(part11); 
         objects.addChild(part12); 
+        objects.scale(scale);
         break;
+        
         
     }// end switch
     
@@ -337,10 +408,11 @@ class Cactus extends GameObject{
   void update(){
     
     pos.x -= super.speed;
+    
+    println(pos.x);
 
     if (pos.x < -50)
     {
-       // remove
        gameObjects.remove(this);
     }
     

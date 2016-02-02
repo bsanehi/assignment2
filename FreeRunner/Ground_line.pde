@@ -1,6 +1,5 @@
 class Ground_line extends Ground{
   
-  
    PShape line;
    
    Ground_line(float x, float y, float scale){

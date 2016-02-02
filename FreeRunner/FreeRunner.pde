@@ -22,7 +22,6 @@ void setup(){
   tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', color(83,83,83) ); // x , y , scale, jump button, duck button , color
   gameObjects.add(tRex);
   
- 
   cloud1 = new Cloud(100+ width,height/4, 0.4, 50, 1 );  // x , y, scale, alpha, cloud speed
   gameObjects.add(cloud1);
   

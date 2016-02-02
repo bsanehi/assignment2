@@ -1,13 +1,12 @@
 class Ground extends GameObject {
   
-  
   float dirt_y;
   
   Ground(){
     // do nothing
   }
   
-  
+
   Ground(float x, float y, float scale){
     
      super(x,y,scale);
@@ -17,18 +16,6 @@ class Ground extends GameObject {
      this.scale = scale;
      
      this.dirt_y = y;
-    
-     // speed = 22;
-      
-      Bumps bump = new Bumps(0.3);
-      bump.pos.x = random(width,width + 200);
-      bump.pos.y = dirt_y + 1;
-      bump.speed = this.speed;
-      gameObjects.add(bump);
-      
-      Ground_line  gr_line = new Ground_line(x,y,scale);
-      gameObjects.add(gr_line);
-     
      
      for(int i=0; i< 30; i++){
        
@@ -40,6 +27,17 @@ class Ground extends GameObject {
        gameObjects.add(dirt);
        
      }
+     
+      Obstacle obstacle = new Obstacle(x,dirt_y - 50,0.20);
+     
+      Bumps bump = new Bumps(0.3);
+      bump.pos.x = random(width,width + 200);
+      bump.pos.y = dirt_y + 1;
+      bump.speed = this.speed;
+      gameObjects.add(bump);
+      
+      Ground_line  gr_line = new Ground_line(x,y,scale);
+      gameObjects.add(gr_line);
      
   }
   
@@ -60,14 +58,20 @@ class Ground extends GameObject {
         gameObjects.add(dirt);
       }
       
-    if( (frameCount % (int)random(65,95)) == 0 ){
-      Bumps bump = new Bumps(0.3);
-      bump.pos.x = random(width,width + 200);
-      bump.pos.y = dirt_y + 1;
-      bump.speed = this.speed;
-      gameObjects.add(bump);
-    }
-    
+      
+      // create cactis
+      if( frameCount % 120 == 0 ){
+          Obstacle obstacle = new Obstacle(this.pos.x,dirt_y - 50,0.20);
+      }
+      
+     if( (frameCount % (int)random(65,95)) == 0 ){
+        Bumps bump = new Bumps(0.3);
+        bump.pos.x = random(width,width + 200);
+        bump.pos.y = dirt_y + 1;
+        bump.speed = this.speed;
+        gameObjects.add(bump);
+      }
+      
       Ground_line  gr_line = new Ground_line(pos.x,pos.y,scale);
       gameObjects.add(gr_line);
     
