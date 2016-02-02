@@ -1,9 +1,15 @@
 class Ground_line extends Ground{
   
+  
    PShape line;
    
-   Ground_line(){
+   Ground_line(float x, float y, float scale){
     
+       pos.x = x;
+       pos.y = y;
+       
+     
+     
        line = createShape();
        line.beginShape();
        line.noStroke();
@@ -16,12 +22,20 @@ class Ground_line extends Ground{
        line.endShape();
        
        objects.addChild(line); 
+       objects.scale(scale);
    }
    
    
   void render(){
     
-     shape(objects, super.pos.x, super.pos.y);
+      shape(objects, super.pos.x, super.pos.y); 
+     
+  };
+  
+  
+  void update(){
+    
+    // shape(objects, super.pos.x, super.pos.y); 
      
   };
   

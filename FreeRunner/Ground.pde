@@ -15,8 +15,8 @@ class Ground extends GameObject {
     
      //super.speed = 0;
      
-    //  Ground_line  gr_line = new Ground_line(x,y,scale);
-    //  gameObjects.add();
+      Ground_line  gr_line = new Ground_line(x,y+2,0.02);
+      gameObjects.add(gr_line);
      
      
      for(int i=0; i< 30; i++){
