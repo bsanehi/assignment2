@@ -322,8 +322,8 @@ class Cactus extends GameObject{
         objects.addChild(part7); 
         objects.addChild(part8); 
         objects.addChild(part9); 
-        objects.scale(scale + 0.1);
-        pos.y =pos.y - 28;
+        objects.scale(scale);
+   //     pos.y =pos.y - 28;
         break;
         
       case 4:

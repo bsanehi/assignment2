@@ -19,7 +19,7 @@ void setup(){
   
   ground_y = height/2 + 40;
   
-  game_speed = 6;
+  game_speed = 7;
 
   
   // player
@@ -186,33 +186,36 @@ void checkCollisions(){
           
            GameObject other = gameObjects.get(j);
            
-            if(other instanceof Cactus){ // Check the type of a object
+            if(other instanceof Cactus){ // Check the type of object
             
-                 for(int k = 0; k <  ((Cactus)other).objects.getChildCount(); k++){
+                 for(int k = 0; k <  ((Cactus)other).objects.getChildCount(); k++){ // get child count
                       
-                     for(int m = 0; m < (((Cactus)other).objects.getChild(k).getVertexCount()); m++){
-                           
-                          PVector v = ((Cactus)other).objects.getChild(k).getVertex(m);
-                          v.div(4);
-                          rect(v.x + other.pos.x,v.y + 250,1,1);
-                     }
-                     
-                      
-                
-                //  println("go.x = " + go.pos.x + "   other.x = " + other.pos.x);
-              
-                   
-                 }
-                       
-             
+                     for(int m = 0; m < (((Cactus)other).objects.getChild(k).getVertexCount()); m++){  // get vertex count
+                          
+                          PVector v = ((Cactus)other).objects.getChild(k).getVertex(m);        
+                          v.div(5);
+                          
+                          float d = dist(v.x + other.pos.x,   v.y + 244,     go.pos.x - 5, go.pos.y + 20);
+                          
+                          println(d);
+                          if(d < 38){
+                            stroke(255,0,0);
+                          }
+                          else{
+                            stroke(0,255,0);
+                          }
+                           ellipse(v.x + other.pos.x, v.y  + 244,1,1);  // points on cactus
+                        //  stroke(83,83,83);
+                    //      noFill();
+                         //  ellipse(go.pos.x - 5,go.pos.y + 20, 50,50);  // circle around t-rex
+                         
+                     }// end inner inner for
+                 }// end inner inner for  
+                 
           }// end inner if
-          
         }// end inner for
-        
       }// end if
-      
     }// end for
-    
 }// end checkCollisions 
 
 
