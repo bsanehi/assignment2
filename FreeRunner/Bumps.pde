@@ -2,7 +2,12 @@ class Bumps extends GameObject{
   
   PShape part1, part2, part3, part4, part5, part6;
   
-  Bumps (float scale, int random ){
+  Bumps (float x, float y, float scale, int random , float speed){
+    
+    this.pos.x = x;
+    this.pos.y = y;
+    this.scale = scale;
+    this.speed = speed;
     
     part1 = createShape();
     part1.beginShape();

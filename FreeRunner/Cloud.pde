@@ -9,12 +9,11 @@ class Cloud extends GameObject{
   
   Cloud(float x, float y, float scale, float alpha, float speed){
     
-    super(x,y,scale);
+    super(x,y,scale);  // use this super later when u improve code
     
     this.alpha = alpha;
-    super.speed = speed;
-    save_pos = pos.x;
-    save_y = pos.y;
+    
+    noFill();
     
     cloud1 = createShape();
     cloud1.beginShape();
@@ -102,6 +101,7 @@ class Cloud extends GameObject{
     objects.addChild(cloud4); 
     objects.addChild(cloud5);
     objects.addChild(cloud6);
+    objects.scale(scale);
     
   }
 
@@ -111,8 +111,7 @@ class Cloud extends GameObject{
      pos.x = pos.x - this.speed;
       
       if(pos.x < (0 - cloud_offset)){
-         pos.x = this.save_pos;
-         pos.y = this.save_y;
+         gameObjects.remove(this);
       }
       
   };

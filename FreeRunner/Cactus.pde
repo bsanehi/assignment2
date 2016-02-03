@@ -2,11 +2,11 @@ class Cactus extends GameObject{
   
   PShape part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part1_w_bg,  part4_w_bg, part7_w_bg, part10_w_bg;
   
-  Cactus(float y, float scale){
+  Cactus(float x, float y, float scale, float speed){
     
     this.scale = scale;
-   // this.speed = speed;
-   // this.pos.x = x;
+    this.speed = speed;
+    this.pos.x = x;
     this.pos.y = y;
     
     part1_w_bg = createShape();

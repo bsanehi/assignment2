@@ -6,7 +6,6 @@ abstract class GameObject
   
   PVector pos;
   float save_pos;
-  float save_y;
   
   float theta = 0.0f;
   

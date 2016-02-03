@@ -26,20 +26,20 @@ void setup(){
   tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', color(83,83,83) ); // x , y , scale, jump button, duck button , color
   gameObjects.add(tRex);
   
-  cloud1 = new Cloud(100+ width,height/4, 0.4, 50, 1 );  // x , y, scale, alpha, cloud speed
-  gameObjects.add(cloud1);
+//  cloud1 = new Cloud(100+ width,height/4, 0.4, 50, 1 );  // x , y, scale, alpha, cloud speed
+ // gameObjects.add(cloud1);
   
-  cloud2 = new Cloud(300+ width,height/3, 0.3, 50 , 1);  // x , y, scale, alpha, cloud speed
-  gameObjects.add(cloud2);
+ // cloud2 = new Cloud(300+ width,height/3, 0.3, 50 , 1);  // x , y, scale, alpha, cloud speed
+ // gameObjects.add(cloud2);
   
-  cloud3 = new Cloud(480+ width,height/3, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
-  gameObjects.add(cloud3);
+ // cloud3 = new Cloud(480+ width,height/3, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
+ // gameObjects.add(cloud3);
   
-  cloud4 = new Cloud(700+ width,height/4, 0.3, 55, 1);  // x , y, scale, alpha, cloud speed
-  gameObjects.add(cloud4);
+ // cloud4 = new Cloud(700+ width,height/4, 0.3, 55, 1);  // x , y, scale, alpha, cloud speed
+ // gameObjects.add(cloud4);
   
-  cloud5 = new Cloud(900+ width,height/4, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
-  gameObjects.add(cloud5);
+  //cloud5 = new Cloud(900+ width,height/4, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
+ //gameObjects.add(cloud5);
   
 
 }// end setup
@@ -134,33 +134,32 @@ void draw(){
        go.update();
        go.render();
        
-       if(go instanceof Dirt || go instanceof Bumps){
+       if(go instanceof Dirt || go instanceof Bumps || go instanceof Cactus){
          go.speed = game_speed;
        }
+       
     }   
     
     if(frameCount % 200 == 0){
       
-        Bumps bump = new Bumps( 0.3, (int)random(1,3));
-        bump.pos.x = random(width,width + 200);
-        bump.pos.y = ground_y;
-        bump.speed = game_speed;
-        gameObjects.add(bump);
-        
-        
-        Cactus cactus = new Cactus(ground_y, 0.20);
-        cactus.pos.x = random(width,width + 200);
-        cactus.pos.y = ground_y;
-        cactus.speed = game_speed;
+        Cactus cactus = new Cactus( random(width,width + 200),ground_y - 46, 0.20 , game_speed);
         gameObjects.add(cactus);  
+      
+        Bumps bump = new Bumps(random(width,width + 200), ground_y, 0.3, (int)random(1,3) , game_speed);
+        gameObjects.add(bump);
         
     }
     
+    if(frameCount % 200 == 0){
+        cloud1 = new Cloud(100+ width,random(30,height/3), random(.45,.7), 50, 1 );  // x , y, scale, alpha, cloud speed
+        gameObjects.add(cloud1);
+        
+    }
+        
     
     if(frameCount % 5 ==0){
         
       for(int i = 0; i<2; i++){
-        
         Dirt dirt = new Dirt(random(width, width*2), random(ground_y + 4, ground_y + 15)  , game_speed , color(83,83,83) );
         gameObjects.add(dirt);
         
