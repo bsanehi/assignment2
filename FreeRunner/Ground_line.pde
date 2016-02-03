@@ -1,4 +1,4 @@
-class Ground_line extends Ground{
+class Ground_line extends GameObject{
   
    PShape line;
    
@@ -28,9 +28,8 @@ class Ground_line extends Ground{
       shape(objects, super.pos.x, super.pos.y); 
   };
   
-  
   void update(){
-      gameObjects.remove(this); // remove it, new one Ground_line is called in Ground Update method
+      gameObjects.remove(this); 
   };
   
   

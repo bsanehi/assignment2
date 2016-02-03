@@ -14,6 +14,7 @@ class Cloud extends GameObject{
     this.alpha = alpha;
     super.speed = speed;
     save_pos = pos.x;
+    save_y = pos.y;
     
     cloud1 = createShape();
     cloud1.beginShape();
@@ -107,18 +108,17 @@ class Cloud extends GameObject{
 
   void update(){
     
-     pos.x = pos.x - speed;
+     pos.x = pos.x - this.speed;
       
       if(pos.x < (0 - cloud_offset)){
          pos.x = this.save_pos;
-         pos.y = random(cloud_offset,height/3);
+         pos.y = this.save_y;
       }
       
   };
   
   
   void render(){
-     // update();
       shape(objects, pos.x, pos.y);
   };
   

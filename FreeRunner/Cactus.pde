@@ -1,11 +1,12 @@
-class Cactus extends Obstacle{
+class Cactus extends GameObject{
   
   PShape part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part1_w_bg,  part4_w_bg, part7_w_bg, part10_w_bg;
   
-  Cactus(float x, float y, float scale){
+  Cactus(float y, float scale){
     
     this.scale = scale;
-    this.pos.x = x;
+   // this.speed = speed;
+   // this.pos.x = x;
     this.pos.y = y;
     
     part1_w_bg = createShape();
@@ -294,9 +295,11 @@ class Cactus extends Obstacle{
     part12.endShape();
     
     
-    int i = (int) random(0, 8);
+    /*
+    int i = (int) random(1, 8);
     switch (i)
     {
+      
       case 1:
         objects  = new PShape();
         objects.addChild(part1_w_bg);
@@ -376,7 +379,7 @@ class Cactus extends Obstacle{
         objects.scale(scale);
         break;
         
-      case 8:
+      case 8: 
         objects = new PShape();
         objects.addChild(part1_w_bg);
         objects.addChild(part1); 
@@ -398,19 +401,42 @@ class Cactus extends Obstacle{
         break;
         
         
-    }// end switch
+    }// end switch */
+    
+    
+        objects = new PShape();
+        objects.addChild(part1_w_bg);
+        objects.addChild(part1); 
+        objects.addChild(part2); 
+        objects.addChild(part3); 
+        objects.addChild(part4_w_bg);
+        objects.addChild(part4); 
+        objects.addChild(part5); 
+        objects.addChild(part6); 
+        objects.addChild(part7_w_bg);
+        objects.addChild(part7); 
+        objects.addChild(part8); 
+        objects.addChild(part9); 
+        objects.addChild(part10_w_bg);
+        objects.addChild(part10); 
+        objects.addChild(part11); 
+        objects.addChild(part12); 
+        objects.scale(scale);
     
     
   }// end Cactus()
   
   
+   void speed(float game_speed){
+    this.speed = game_speed;
+  }
+  
+  
   
   void update(){
     
-    pos.x -= super.speed;
+    pos.x -= this.speed;
     
-    println(pos.x);
-
     if (pos.x < -50)
     {
        gameObjects.remove(this);
@@ -418,8 +444,10 @@ class Cactus extends Obstacle{
     
   };
   
+  
+  
   void render(){
-      shape(objects, super.pos.x, super.pos.y);
+      shape(objects, pos.x, pos.y);
   };
   
   

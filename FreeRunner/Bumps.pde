@@ -1,10 +1,8 @@
-class Bumps extends Ground{
+class Bumps extends GameObject{
   
-  PShape part1, part2, part3, part4;
+  PShape part1, part2, part3, part4, part5, part6;
   
-  Bumps(float scale){
-    
-    objects = createShape(GROUP);
+  Bumps (float scale, int random ){
     
     part1 = createShape();
     part1.beginShape();
@@ -68,6 +66,9 @@ class Bumps extends Ground{
     part2.vertex(0, 0);
     part2.endShape();
     
+    
+    
+    
     part3 = createShape();
     part3.beginShape();
     part3.noStroke();
@@ -106,18 +107,102 @@ class Bumps extends Ground{
     part4.vertex(120, -5);
     part4.endShape();
     
-    objects.addChild(part1);
-    objects.addChild(part2);
-    objects.addChild(part3);
-    objects.addChild(part4);
+    
+    
+    part5 = createShape();
+    part5.beginShape();
+    part5.noStroke();
+    part5.fill(255,255,255);
+    part5.vertex(105, 0);
+    part5.vertex(105, 5);
+    part5.vertex(155, 5);
+    part5.vertex(155, 0);
+    part5.vertex(155, -2);
+    part5.vertex(151, -2);
+    part5.vertex(151, -6);
+    part5.vertex(143, -6);
+    part5.vertex(143, -12);
+    part5.vertex(138, -12);
+    part5.vertex(138, -15);
+    part5.vertex(122, -15);
+    part5.vertex(122, -12);
+    part5.vertex(116, -12);
+    part5.vertex(116, -8);
+    part5.vertex(110, -8);
+    part5.vertex(110, -6);
+    part5.vertex(108, -6);
+    part5.vertex(108, -2);
+    part5.vertex(105, -2);
+    part5.vertex(105, 0);
+    part5.endShape();
+    
+    part6 = createShape();
+    part6.beginShape();
+    part6.noStroke();
+    part6.fill(83,83,83);
+    part6.vertex(100, 0);
+    part6.vertex(100, -5);
+    part6.vertex(105, -5);
+    part6.vertex(105, -10);
+    part6.vertex(112, -10);
+    part6.vertex(112, -15);
+    part6.vertex(118, -15);
+    part6.vertex(118, -20);
+    part6.vertex(140, -20);
+    part6.vertex(140, -15);
+    part6.vertex(145, -15);
+    part6.vertex(145, -10);
+    part6.vertex(152, -10);
+    part6.vertex(152, -5);
+    part6.vertex(160, -5);
+    part6.vertex(160, 0);
+    part6.vertex(148, 0);
+    part6.vertex(148, -4);
+    part6.vertex(140, -4);
+    part6.vertex(140, -10);
+    part6.vertex(136, -10);
+    part6.vertex(136, -13);
+    part6.vertex(122, -13);
+    part6.vertex(122, -10);
+    part6.vertex(117, -10);
+    part6.vertex(117, -5);
+    part6.vertex(110, -5);
+    part6.vertex(110, 0);
+    part6.vertex(100, 0);
+    part6.endShape();
+    
+    
+    if( random == 1 ){
+
+      objects = createShape(GROUP);
+      objects.addChild(part1);
+      objects.addChild(part2);
+      objects.addChild(part3);
+      objects.addChild(part4);
+      
+    }
+    else{
+      
+      objects = createShape(GROUP);
+      objects.addChild(part1);
+      objects.addChild(part2);
+      objects.addChild(part5);
+      objects.addChild(part6);
+    }
+    
     this.objects.scale(scale);
     
   }// end Bump constructor
   
+  
+  void speed(float game_speed){
+    this.speed = game_speed;
+  }
+  
     
   void update(){
     
-    pos.x -= super.speed;
+    pos.x -= this.speed;
 
     if (pos.x < -50){
        gameObjects.remove(this);
@@ -126,7 +211,7 @@ class Bumps extends Ground{
   };
   
   void render(){
-     shape(objects, super.pos.x, super.pos.y);
+     shape(objects, pos.x, pos.y);
   };
   
   

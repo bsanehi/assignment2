@@ -371,6 +371,8 @@ class T_rex extends GameObject {
   
   void update(){
     
+    checkCollisions();
+    
     if(start_game == true){
        running = true;
     }

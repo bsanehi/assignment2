@@ -6,11 +6,13 @@ abstract class GameObject
   
   PVector pos;
   float save_pos;
+  float save_y;
+  
   float theta = 0.0f;
   
   PFont font;
   String text;
-  float speed = 5.0f;  // 5.0f
+  float speed = 1.0f;  // 5.0f
   color c; 
   float scale;
   float scale_dirt;

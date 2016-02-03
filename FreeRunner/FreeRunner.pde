@@ -2,6 +2,8 @@ import ddf.minim.*;
 
 Minim minim;
 
+float ground_y;
+
 void setup(){
   size(1000,500);
   start_game = false;
@@ -14,9 +16,11 @@ void setup(){
   score = new Score();
   gameObjects.add(score);
   
-  ground = new Ground(0, height/2 + 40,0.02);
-  gameObjects.add(ground);
   
+  ground_y = height/2 + 40;
+  
+  game_speed = 6;
+
   
   // player
   tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', color(83,83,83) ); // x , y , scale, jump button, duck button , color
@@ -66,9 +70,10 @@ T_rex tRex;
 
 Cloud cloud1, cloud2, cloud3, cloud4, cloud5;
 
-Ground ground;
 
 Score score;
+
+Ground_line ground;
 
 
 float menu_pos;
@@ -78,6 +83,10 @@ float intro_animation;
 float intro_speed;
 
 
+float game_speed;
+final float ACCELERATION = 0.001;
+
+
 void draw(){
   
   background(255,255,255);
@@ -85,7 +94,7 @@ void draw(){
   if(start_game == false){
     
     background(0,0,0);
-    
+      
     intro_animation = width + (width/5);
     intro_speed = width *.03;
     
@@ -97,46 +106,161 @@ void draw(){
   
   if(start_game == true && intro_animation > 0){
     
-    ground.render();
-    
+    if(frameCount % 30 == 0){
+      
+      for(int i=0; i< 30; i++){
+  
+        Dirt dirt = new Dirt(random(0, width) , random(ground_y + 4, ground_y + 15), game_speed , color(83,83,83) );
+        gameObjects.add(dirt);
+      }
+      
+    }
+       
     tRex.update();
     tRex.render();
     
     fill(0);
     intro_animation -= intro_speed;
     ellipse(width/2,height/2,intro_animation,intro_animation);
+    
   }
   
   
   if(start_game == true && intro_animation <= 0){
     
-   // ground.render();
-    
     for(int i = gameObjects.size() - 1 ; i >= 0   ; i--)
     {
-       
        GameObject go = gameObjects.get(i);
-       if (go instanceof Bumps || go instanceof Dirt){
-       //  go.speed += 1;
-       }
-       
        go.update();
        go.render();
+       
+       if(go instanceof Dirt || go instanceof Bumps){
+         go.speed = game_speed;
+       }
     }   
-
-  }
+    
+    if(frameCount % 200 == 0){
+      
+        Bumps bump = new Bumps( 0.3, (int)random(1,3));
+        bump.pos.x = random(width,width + 200);
+        bump.pos.y = ground_y;
+        bump.speed = game_speed;
+        gameObjects.add(bump);
+        
+        
+        Cactus cactus = new Cactus(ground_y, 0.20);
+        cactus.pos.x = random(width,width + 200);
+        cactus.pos.y = ground_y;
+        cactus.speed = game_speed;
+        gameObjects.add(cactus);  
+        
+    }
+    
+    
+    if(frameCount % 5 ==0){
+        
+      for(int i = 0; i<2; i++){
+        
+        Dirt dirt = new Dirt(random(width, width*2), random(ground_y + 4, ground_y + 15)  , game_speed , color(83,83,83) );
+        gameObjects.add(dirt);
+        
+      }
+      
+    }
+     
+     
+    Ground_line  ground = new Ground_line(0, ground_y, 0.02);
+    gameObjects.add(ground);
+     
+     
+    game_speed += ACCELERATION;
+    
+  }// end start game
+  
+  
+ 
+  
+  
+  checkCollisions();
   
 }// end draw
 
-
+  
 void mousePressed() {
    // tRex.jump();
 }
+              
+
+
+/*
+void checkCollisions(){
+    
+    for(int i= gameObjects.size() - 1; i >= 0 ; i--){
+      
+      GameObject go = gameObjects.get(i);
+      
+      if(go instanceof T_rex      ){
+        
+        for(int j = gameObjects.size() - 1; j >= 0 ; j--){
+          
+           GameObject other = gameObjects.get(j);
+           
+            if(other instanceof Cactus){ // Check the type of a object
+            
+                 for(int k = 0; k <  ((Cactus)other).objects.getChildCount(); k++){
+                      
+                     for(int m = 0; m < (((Cactus)other).objects.getChild(k).getVertexCount()); m++){
+                           
+                          PVector v = ((Cactus)other).objects.getChild(k).getVertex(m);
+                          v.div(6);
+                          rect(v.x +200,v.y + 250,1,1);
+                     }
+                     
+                      
+                
+                //  println("go.x = " + go.pos.x + "   other.x = " + other.pos.x);
+              
+                   
+                 }
+                       
+             
+          }// end inner if
+          
+        }// end inner for
+        
+      }// end if
+      
+    }// end for
+    
+}// end checkCollisions */
 
 
 
-void collision(){
-  
-  
-  
-}
+
+void checkCollisions(){
+    
+    for(int i = gameObjects.size() - 1; i >= 0 ; i--){
+      noFill();
+    //  stroke(0,255,0);
+      GameObject go = gameObjects.get(i);
+      
+      if(go instanceof Bumps){
+        
+        //ellipse(go.pos.x, go.pos.y, go.scale, go.scale);    
+        
+        for(int j = gameObjects.size() - 1; j >= 0 ; j--){
+          
+           GameObject other = gameObjects.get(j);
+           
+            if(other instanceof Bumps){ // Check the type of a object
+            
+             //   ellipse(other.pos.x, other.pos.y, other.scale, other.scale);  
+            
+                 if(go.pos.dist(other.pos) < 500){
+                   
+                 }             
+            }
+          }// end inner if
+        }// end inner for 
+    }// end for 
+}// end checkCollisions 
