@@ -26,22 +26,6 @@ void setup(){
   tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', color(83,83,83) ); // x , y , scale, jump button, duck button , color
   gameObjects.add(tRex);
   
-//  cloud1 = new Cloud(100+ width,height/4, 0.4, 50, 1 );  // x , y, scale, alpha, cloud speed
- // gameObjects.add(cloud1);
-  
- // cloud2 = new Cloud(300+ width,height/3, 0.3, 50 , 1);  // x , y, scale, alpha, cloud speed
- // gameObjects.add(cloud2);
-  
- // cloud3 = new Cloud(480+ width,height/3, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
- // gameObjects.add(cloud3);
-  
- // cloud4 = new Cloud(700+ width,height/4, 0.3, 55, 1);  // x , y, scale, alpha, cloud speed
- // gameObjects.add(cloud4);
-  
-  //cloud5 = new Cloud(900+ width,height/4, 0.4, 55, 1);  // x , y, scale, alpha, cloud speed
- //gameObjects.add(cloud5);
-  
-
 }// end setup
 
 
@@ -140,16 +124,14 @@ void draw(){
        
     }   
     
-    if(frameCount % 200 == 0){
-      
-        Cactus cactus = new Cactus( random(width,width + 200),ground_y - 46, 0.20 , game_speed);
-        gameObjects.add(cactus);  
-      
+    if(frameCount % 60 == 0){
+        Cactus cactus = new Cactus( random(width,width + 200),ground_y - 46, 0.20 , game_speed, (int)random(1,9));
+        gameObjects.add(cactus); 
+
         Bumps bump = new Bumps(random(width,width + 200), ground_y, 0.3, (int)random(1,3) , game_speed);
-        gameObjects.add(bump);
-        
+        gameObjects.add(bump);   
     }
-    
+
     if(frameCount % 200 == 0){
         cloud1 = new Cloud(100+ width,random(30,height/3), random(.45,.7), 50, 1 );  // x , y, scale, alpha, cloud speed
         gameObjects.add(cloud1);
@@ -191,14 +173,14 @@ void mousePressed() {
               
 
 
-/*
+
 void checkCollisions(){
     
     for(int i= gameObjects.size() - 1; i >= 0 ; i--){
       
       GameObject go = gameObjects.get(i);
       
-      if(go instanceof T_rex      ){
+      if(go instanceof T_rex  ){
         
         for(int j = gameObjects.size() - 1; j >= 0 ; j--){
           
@@ -211,8 +193,8 @@ void checkCollisions(){
                      for(int m = 0; m < (((Cactus)other).objects.getChild(k).getVertexCount()); m++){
                            
                           PVector v = ((Cactus)other).objects.getChild(k).getVertex(m);
-                          v.div(6);
-                          rect(v.x +200,v.y + 250,1,1);
+                          v.div(4);
+                          rect(v.x + other.pos.x,v.y + 250,1,1);
                      }
                      
                       
@@ -231,11 +213,13 @@ void checkCollisions(){
       
     }// end for
     
-}// end checkCollisions */
+}// end checkCollisions 
 
 
 
 
+
+/*
 void checkCollisions(){
     
     for(int i = gameObjects.size() - 1; i >= 0 ; i--){
@@ -243,17 +227,17 @@ void checkCollisions(){
     //  stroke(0,255,0);
       GameObject go = gameObjects.get(i);
       
-      if(go instanceof Bumps){
+      if(go instanceof T_rex){
         
-        //ellipse(go.pos.x, go.pos.y, go.scale, go.scale);    
+        ellipse(go.pos.x, go.pos.y, 60, 60);    
         
         for(int j = gameObjects.size() - 1; j >= 0 ; j--){
           
            GameObject other = gameObjects.get(j);
            
-            if(other instanceof Bumps){ // Check the type of a object
+            if(other instanceof Cactus){ // Check the type of a object
             
-             //   ellipse(other.pos.x, other.pos.y, other.scale, other.scale);  
+                ellipse(other.pos.x, other.pos.y, 60, 60);  
             
                  if(go.pos.dist(other.pos) < 500){
                    
@@ -262,4 +246,4 @@ void checkCollisions(){
           }// end inner if
         }// end inner for 
     }// end for 
-}// end checkCollisions 
+}// end checkCollisions  */

@@ -2,7 +2,7 @@ class Cactus extends GameObject{
   
   PShape part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part1_w_bg,  part4_w_bg, part7_w_bg, part10_w_bg;
   
-  Cactus(float x, float y, float scale, float speed){
+  Cactus(float x, float y, float scale, float speed, int random_cactus){
     
     this.scale = scale;
     this.speed = speed;
@@ -295,9 +295,7 @@ class Cactus extends GameObject{
     part12.endShape();
     
     
-    /*
-    int i = (int) random(1, 8);
-    switch (i)
+    switch (random_cactus)
     {
       
       case 1:
@@ -324,7 +322,8 @@ class Cactus extends GameObject{
         objects.addChild(part7); 
         objects.addChild(part8); 
         objects.addChild(part9); 
-        objects.scale(scale);
+        objects.scale(scale + 0.1);
+        pos.y =pos.y - 28;
         break;
         
       case 4:
@@ -401,10 +400,10 @@ class Cactus extends GameObject{
         break;
         
         
-    }// end switch */
+    }// end switch 
     
     
-        objects = new PShape();
+       /*objects = new PShape();
         objects.addChild(part1_w_bg);
         objects.addChild(part1); 
         objects.addChild(part2); 
@@ -422,7 +421,7 @@ class Cactus extends GameObject{
         objects.addChild(part11); 
         objects.addChild(part12); 
         objects.scale(scale);
-    
+     */
     
   }// end Cactus()
   
