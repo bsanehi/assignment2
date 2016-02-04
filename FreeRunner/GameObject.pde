@@ -16,7 +16,8 @@ abstract class GameObject
   float scale;
   float scale_dirt;
   
-  AudioPlayer player;
+  AudioPlayer player1;
+  AudioPlayer player2;
   
   final float GRAVITY = 8;
   final float INITIAL_JUMP_VELOCITY = 12;

@@ -2,7 +2,7 @@ class T_rex extends GameObject {
   
   char jump;
   char duck;
-  boolean gravity;
+  boolean jumped;
   boolean running;
   float jump_height;
   boolean standing;
@@ -342,7 +342,7 @@ class T_rex extends GameObject {
      
       this.jump = jump;
       this.duck = duck;
-      this.gravity = true;
+      this.jumped = true;
       
       white_bg = createShape();
       white_bg.beginShape();
@@ -365,29 +365,31 @@ class T_rex extends GameObject {
       this.jump_height = INITIAL_JUMP_VELOCITY;
       this.standing = true;
       
-      player = minim.loadFile("sounds/jump.mp3");
+      player1 = minim.loadFile("sounds/jump.mp3");
+      player2 = minim.loadFile("sounds/crash.mp3");
   }
   
   
   void update(){
     
-    checkCollisions();
-    
-    if(start_game == true){
-       running = true;
-    }
-    
-    if (keys[jump] || keys[' '])
-    {
-       jump();
-       
-    } else if (keys[duck]){
+    if(!dead){
+      if(start_game == true){
+         running = true;
+      }
       
-      duck();
+      if (keys[jump] || keys[' '])
+      {
+         jump();
+         
+      } else if (keys[duck]){
+        
+        duck();
+        
+      } else{
+        
+        standing = true;
+      }
       
-    } else{
-      
-      standing = true;
     }
     
   }// end update();
@@ -395,46 +397,61 @@ class T_rex extends GameObject {
   
   void render(){
     
-    if(running && pos.y ==  this.save_pos){
-      run();
-    }
     
-    if(this.gravity == false){
+    if(dead){   
+         objects = new PShape();
+         objects.addChild(head); // 0
+         objects.addChild(mouth2);
+         objects.addChild(eye2);
+         objects.addChild(eyeBall);
+         objects.addChild(body); // 1
+         objects.addChild(legs1); // 2
+         this.objects.scale(scale);  
+    }
+    else{
+    
+      if(running && pos.y ==  this.save_pos){
+        run();
+      }
       
-       objects = new PShape();
-       objects.addChild(head); // 0
-       objects.addChild(mouth1);
-       objects.addChild(eye1);
-       objects.addChild(body); // 1
-       objects.addChild(legs1); // 2
-       this.objects.scale(scale);  
-      
-       pos.y -=  this.jump_height;
-       
-       if(pos.y < (save_pos  - (MIN_JUMP_HEIGHT/2))){
+      if(this.jumped == false){
+        
+         objects = new PShape();
+         objects.addChild(head); // 0
+         objects.addChild(mouth1);
+         objects.addChild(eye1);
+         objects.addChild(body); // 1
+         objects.addChild(legs1); // 2
+         this.objects.scale(scale);  
+        
+         pos.y -=  this.jump_height;
          
-           this.jump_height = INITIAL_JUMP_VELOCITY/2;
+         if(pos.y < (save_pos  - (MIN_JUMP_HEIGHT/2))){
            
-           pos.y -= this.jump_height/1.5;
-       }
-       
-       if(pos.y < (save_pos  - MIN_JUMP_HEIGHT)){
-         gravity = true;
-         this.jump_height = INITIAL_JUMP_VELOCITY;
-       }
-      
-    }
-    
-    if(this.gravity == true){
-      
-         if( pos.y < save_pos){
-              pos.y += GRAVITY;
+             this.jump_height = INITIAL_JUMP_VELOCITY/2;
+             
+             pos.y -= this.jump_height/1.5;
          }
          
-         if(pos.y > save_pos){
-              pos.y = this.save_pos;
+         if(pos.y < (save_pos  - MIN_JUMP_HEIGHT)){
+           jumped = true;
+           this.jump_height = INITIAL_JUMP_VELOCITY;
          }
-    }
+        
+      }
+      
+      if(this.jumped == true){
+        
+           if( pos.y < save_pos){
+                pos.y += GRAVITY;
+           }
+           
+           if(pos.y > save_pos){
+                pos.y = this.save_pos;
+           }
+      }
+      
+    }// end else
     
     shape(objects, super.pos.x, super.pos.y);
        
@@ -502,9 +519,9 @@ class T_rex extends GameObject {
   void jump(){
     
     if(pos.y == save_pos){
-      this.gravity = false;
-      player.rewind();
-      player.play();
+      this.jumped = false;
+      player1.rewind();
+      player1.play();
     }
    
     running = true;
@@ -516,7 +533,7 @@ class T_rex extends GameObject {
   void duck(){
     
       if(pos.y < (save_pos)){
-         gravity = true;
+         jumped = true;
          pos.y += GRAVITY;
       }
       
@@ -526,6 +543,24 @@ class T_rex extends GameObject {
         
       }// end outer if
       
+  }
+  
+  
+  void dead(){
+       dead = true;
+       player2.rewind();
+       player2.play();
+       objects = new PShape();
+       objects.addChild(head); // 0
+       objects.addChild(mouth2);
+       objects.addChild(eye2);
+       objects.addChild(eyeBall);
+       objects.addChild(body); // 1
+       objects.addChild(legs1); // 2
+       this.objects.scale(scale);  
+       
+       shape(objects, super.pos.x, super.pos.y);
+       
   }
   
   

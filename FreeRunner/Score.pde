@@ -5,7 +5,7 @@ class Score extends GameObject{
   Score(){
     
     score = 0;
-    player = minim.loadFile("sounds/achievement.mp3");
+    player1 = minim.loadFile("sounds/achievement.mp3");
     font = loadFont("fonts/PressStart2P-150.vlw");
     textAlign(CENTER, CENTER);
   }
@@ -18,8 +18,8 @@ class Score extends GameObject{
       score++;
       
       if(score % 100 == 0){
-         player.rewind();
-         player.play();
+         player1.rewind();
+         player1.play();
       }
       
     }// end outer if

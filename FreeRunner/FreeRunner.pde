@@ -3,6 +3,10 @@ import ddf.minim.*;
 Minim minim;
 
 float ground_y;
+boolean show_collision;
+float col_circle_size;
+float col_circle_radius;
+boolean dead;
 
 void setup(){
   size(1000,500);
@@ -19,8 +23,11 @@ void setup(){
   
   ground_y = height/2 + 40;
   
-  game_speed = 7;
+  game_speed = 6;
 
+  show_collision = false;
+  col_circle_size = 38;
+  col_circle_radius = col_circle_size/2;
   
   // player
   tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', color(83,83,83) ); // x , y , scale, jump button, duck button , color
@@ -74,8 +81,8 @@ final float ACCELERATION = 0.001;
 void draw(){
   
   background(255,255,255);
-  
-  if(start_game == false){
+
+  if(start_game == false && !dead){
     
     background(0,0,0);
       
@@ -110,7 +117,7 @@ void draw(){
   }
   
   
-  if(start_game == true && intro_animation <= 0){
+  if(start_game == true && intro_animation <= 0 ){
     
     for(int i = gameObjects.size() - 1 ; i >= 0   ; i--)
     {
@@ -124,12 +131,18 @@ void draw(){
        
     }   
     
-    if(frameCount % 60 == 0){
-        Cactus cactus = new Cactus( random(width,width + 200),ground_y - 46, 0.20 , game_speed, (int)random(1,9));
-        gameObjects.add(cactus); 
-
+    if(!dead){
+      
+      if(frameCount % 60 == 0 || frameCount % 120 == 0){
+          Cactus cactus = new Cactus( random(width,width + 200),ground_y - 46, 0.20 , game_speed, (int)random(1,9));
+          gameObjects.add(cactus); 
+      }
+      
+      if(frameCount % 60 == 0){
         Bumps bump = new Bumps(random(width,width + 200), ground_y, 0.3, (int)random(1,3) , game_speed);
-        gameObjects.add(bump);   
+        gameObjects.add(bump); 
+      }
+      
     }
 
     if(frameCount % 200 == 0){
@@ -139,30 +152,27 @@ void draw(){
     }
         
     
-    if(frameCount % 5 ==0){
+    if(frameCount % 5 == 0 && !dead){
         
       for(int i = 0; i<2; i++){
         Dirt dirt = new Dirt(random(width, width*2), random(ground_y + 4, ground_y + 15)  , game_speed , color(83,83,83) );
         gameObjects.add(dirt);
-        
       }
       
     }
      
-     
     Ground_line  ground = new Ground_line(0, ground_y, 0.02);
     gameObjects.add(ground);
-     
-     
-    game_speed += ACCELERATION;
+    
+    if(!dead){
+      game_speed += ACCELERATION;
+    }
     
   }// end start game
   
-  
- 
-  
-  
-  checkCollisions();
+  if( !dead && start_game ==  true){
+    checkCollisions();
+  }
   
 }// end draw
 
@@ -187,66 +197,43 @@ void checkCollisions(){
            GameObject other = gameObjects.get(j);
            
             if(other instanceof Cactus){ // Check the type of object
+               
+                 if(other.pos.x <= go.pos.x + col_circle_radius){ // check if close to T_rex if so turn on collision   
             
-                 for(int k = 0; k <  ((Cactus)other).objects.getChildCount(); k++){ // get child count
-                      
-                     for(int m = 0; m < (((Cactus)other).objects.getChild(k).getVertexCount()); m++){  // get vertex count
-                          
-                          PVector v = ((Cactus)other).objects.getChild(k).getVertex(m);        
-                          v.div(5);
-                          
-                          float d = dist(v.x + other.pos.x,   v.y + 244,     go.pos.x - 5, go.pos.y + 20);
-                          
-                          if(d < 25){
-                         //   stroke(255,0,0);
-                           println("hit");
-                          }
-                          else{
-                          //  stroke(0,255,0);
-                          }
-                         //  ellipse(v.x + other.pos.x, v.y  + 244,1,1);  // points on cactus
-                        //  stroke(83,83,83);
-                    //      noFill();
-                          // ellipse(go.pos.x - 5,go.pos.y + 20, 50,50);  // circle around t-rex
-                         
-                     }// end inner inner for
-                 }// end inner inner for  
+                   for(int k = 0; k <  ((Cactus)other).objects.getChildCount(); k++){ // get child count
+                        
+                       for(int m = 0; m < (((Cactus)other).objects.getChild(k).getVertexCount()); m++){  // get vertex count
+                            
+                            PVector v = ((Cactus)other).objects.getChild(k).getVertex(m);        
+                            v.div(5);
+                            
+                            if(dist(v.x + other.pos.x,   v.y + 244,     go.pos.x - 5, go.pos.y + 20) < col_circle_radius ){
+                              
+                              stroke(255,0,0);
+                              game_speed = 0; 
+                            //  start_game = false;
+                              ((T_rex)go).dead();
+                            }
+                            else{
+                               stroke(0,255,0);
+                            }
+                            
+                            if(show_collision){
+                               noFill();
+                               ellipse(v.x + other.pos.x, v.y  + 244,1,1);  // points on cactus
+                               ellipse(go.pos.x - 5,go.pos.y + 20, col_circle_size, col_circle_size);  // circle around t-rex
+                            }
+                              
+                            stroke(83,83,83);  
+                            
+                       }// end inner inner for
+                       
+                   }// end inner inner for  
+                   
+                 }// end if to check if cactus close to T_rex
                  
           }// end inner if
         }// end inner for
       }// end if
     }// end for
 }// end checkCollisions 
-
-
-
-
-
-/*
-void checkCollisions(){
-    
-    for(int i = gameObjects.size() - 1; i >= 0 ; i--){
-      noFill();
-    //  stroke(0,255,0);
-      GameObject go = gameObjects.get(i);
-      
-      if(go instanceof T_rex){
-        
-        ellipse(go.pos.x, go.pos.y, 60, 60);    
-        
-        for(int j = gameObjects.size() - 1; j >= 0 ; j--){
-          
-           GameObject other = gameObjects.get(j);
-           
-            if(other instanceof Cactus){ // Check the type of a object
-            
-                ellipse(other.pos.x, other.pos.y, 60, 60);  
-            
-                 if(go.pos.dist(other.pos) < 500){
-                   
-                 }             
-            }
-          }// end inner if
-        }// end inner for 
-    }// end for 
-}// end checkCollisions  */
