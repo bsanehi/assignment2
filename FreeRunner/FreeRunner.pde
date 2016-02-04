@@ -197,17 +197,17 @@ void checkCollisions(){
                           
                           float d = dist(v.x + other.pos.x,   v.y + 244,     go.pos.x - 5, go.pos.y + 20);
                           
-                          println(d);
-                          if(d < 38){
-                            stroke(255,0,0);
+                          if(d < 25){
+                         //   stroke(255,0,0);
+                           println("hit");
                           }
                           else{
-                            stroke(0,255,0);
+                          //  stroke(0,255,0);
                           }
-                           ellipse(v.x + other.pos.x, v.y  + 244,1,1);  // points on cactus
+                         //  ellipse(v.x + other.pos.x, v.y  + 244,1,1);  // points on cactus
                         //  stroke(83,83,83);
                     //      noFill();
-                         //  ellipse(go.pos.x - 5,go.pos.y + 20, 50,50);  // circle around t-rex
+                          // ellipse(go.pos.x - 5,go.pos.y + 20, 50,50);  // circle around t-rex
                          
                      }// end inner inner for
                  }// end inner inner for  
