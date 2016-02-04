@@ -327,6 +327,7 @@ class T_rex extends GameObject {
       eye2.vertex(10,22);
       eye2.vertex(10,10);
       eye2.vertex(10,10);
+      eye2.scale(1.2);
       eye2.endShape();
       
       eyeBall = createShape();
@@ -338,6 +339,7 @@ class T_rex extends GameObject {
       eyeBall.vertex(19,19);
       eyeBall.vertex(13,19);
       eyeBall.vertex(13,13);
+      eyeBall.scale(1.2);
       eyeBall.endShape();
      
       this.jump = jump;

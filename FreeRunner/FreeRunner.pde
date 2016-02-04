@@ -7,10 +7,15 @@ boolean show_collision;
 float col_circle_size;
 float col_circle_radius;
 boolean dead;
+boolean restart;
 
 void setup(){
   size(1000,500);
   start_game = false;
+  restart = false;
+  
+  gameOver = new Game_over();
+  gameObjects.add(gameOver);
   
   minim = new Minim(this);
   sub_menu_1 = new Menu("Settings",1);
@@ -61,8 +66,8 @@ T_rex tRex;
 
 Cloud cloud1, cloud2, cloud3, cloud4, cloud5;
 
-
 Score score;
+Game_over gameOver;
 
 Ground_line ground;
 
@@ -80,7 +85,7 @@ final float ACCELERATION = 0.001;
 
 void draw(){
   
-  background(255,255,255);
+  background(247,247,247);
 
   if(start_game == false && !dead){
     
@@ -143,7 +148,7 @@ void draw(){
         gameObjects.add(bump); 
       }
       
-    }
+    }// end if not dead
 
     if(frameCount % 200 == 0){
         cloud1 = new Cloud(100+ width,random(30,height/3), random(.45,.7), 50, 1 );  // x , y, scale, alpha, cloud speed
@@ -178,7 +183,38 @@ void draw(){
 
   
 void mousePressed() {
-   // tRex.jump();
+  
+   if(dead){
+     
+      for(int i = gameObjects.size() - 1 ; i >= 0   ; i--){
+         GameObject go = gameObjects.get(i);
+         
+         if(go instanceof Game_over){
+           ((Game_over)go).remove_gameover();
+         }
+         
+         if(go instanceof Score){
+           ((Score)go).score = 0;
+         }
+         
+         if(go instanceof Cactus || go instanceof Bumps){
+            gameObjects.remove(i);
+         }
+         
+         restart = true;
+         dead = false;
+         game_speed = 6;
+         
+      }
+   }
+   
+   
+   if(!dead){
+      gameOver = new Game_over();
+      gameObjects.add(gameOver);
+   }
+   
+   
 }
               
 
@@ -204,15 +240,15 @@ void checkCollisions(){
                         
                        for(int m = 0; m < (((Cactus)other).objects.getChild(k).getVertexCount()); m++){  // get vertex count
                             
-                            PVector v = ((Cactus)other).objects.getChild(k).getVertex(m);        
-                            v.div(5);
+                            PVector vertex = ((Cactus)other).objects.getChild(k).getVertex(m);        
+                            vertex.div(5);
                             
-                            if(dist(v.x + other.pos.x,   v.y + 244,     go.pos.x - 5, go.pos.y + 20) < col_circle_radius ){
+                            if(dist(vertex.x + other.pos.x,   vertex.y + 244,     go.pos.x - 5, go.pos.y + 20) < col_circle_radius ){
                               
                               stroke(255,0,0);
                               game_speed = 0; 
-                            //  start_game = false;
                               ((T_rex)go).dead();
+                              
                             }
                             else{
                                stroke(0,255,0);
@@ -220,7 +256,7 @@ void checkCollisions(){
                             
                             if(show_collision){
                                noFill();
-                               ellipse(v.x + other.pos.x, v.y  + 244,1,1);  // points on cactus
+                               ellipse(vertex.x + other.pos.x, vertex.y  + 244,1,1);  // points on cactus
                                ellipse(go.pos.x - 5,go.pos.y + 20, col_circle_size, col_circle_size);  // circle around t-rex
                             }
                               
