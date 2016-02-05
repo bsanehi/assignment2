@@ -4,9 +4,8 @@ class Bumps extends GameObject{
   
   Bumps (float x, float y, float scale, int random , float speed){
     
-    this.pos.x = x;
-    this.pos.y = y;
-    this.scale = scale;
+    super(x,y,scale);
+    
     this.speed = speed;
     
     part1 = createShape();

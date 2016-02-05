@@ -102,7 +102,11 @@ class Game_over extends GameObject{
   
   void render(){
     if(dead){
-       shape(objects, width/2 - (gameOver_width/2), height/2 -gameOver_height); 
+
+       //textFont(font,width * 0.02);
+       text("G A M E   O V E R",width/2, height *.3); 
+            
+       shape(objects, width/2 - (gameOver_width/2), height/2 - (gameOver_height/2)); 
     }
   }
   

@@ -13,6 +13,7 @@ void setup(){
   size(1000,500);
   start_game = false;
   restart = false;
+  object_creation = 60;
   
   gameOver = new Game_over();
   gameObjects.add(gameOver);
@@ -41,7 +42,7 @@ void setup(){
 }// end setup
 
 
-ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+ArrayList<GameObject> gameObjects = new ArrayList<GameObject>(250);
 
 boolean[] keys = new boolean[512];
 
@@ -82,10 +83,14 @@ float intro_speed;
 float game_speed;
 final float ACCELERATION = 0.001;
 
+float object_creation;
+
 
 void draw(){
   
-  background(247,247,247);
+   background(247,247,247);
+//   background(119,181,254);
+
 
   if(start_game == false && !dead){
     
@@ -104,9 +109,9 @@ void draw(){
     
     if(frameCount % 30 == 0){
       
-      for(int i=0; i< 30; i++){
+      for(int i=0; i< 20; i++){
   
-        Dirt dirt = new Dirt(random(0, width) , random(ground_y + 4, ground_y + 15), game_speed , color(83,83,83) );
+        Dirt dirt = new Dirt(random(0, width + 300) , random(ground_y + 4, ground_y + 15), game_speed , color(83,83,83) );
         gameObjects.add(dirt);
       }
       
@@ -134,52 +139,52 @@ void draw(){
          go.speed = game_speed;
        }
        
-    }   
+    }// end for
     
     if(!dead){
-      
-      if(frameCount % 60 == 0 || frameCount % 120 == 0){
+            
+      if(frameCount % ((int)object_creation) == 0){
           Cactus cactus = new Cactus( random(width,width + 200),ground_y - 46, 0.20 , game_speed, (int)random(1,9));
           gameObjects.add(cactus); 
+          
+          Bumps bump = new Bumps(random(width,width + 240), ground_y, 0.3, (int)random(1,3) , game_speed);
+          gameObjects.add(bump); 
+          
+      }// end inner if
+      
+     if(frameCount % 8 == 0){
+       
+        for(int i = 0; i<2; i++){
+           Dirt dirt = new Dirt(random(width, width*2), random(ground_y + 4, ground_y + 15)  , game_speed , color(83,83,83) );
+           gameObjects.add(dirt);
+        }
+        
+     }// end inner if
+     
+      game_speed += ACCELERATION;
+      
+      if(object_creation >= 10){
+        object_creation -= ACCELERATION * 1.6;
       }
       
-      if(frameCount % 60 == 0){
-        Bumps bump = new Bumps(random(width,width + 200), ground_y, 0.3, (int)random(1,3) , game_speed);
-        gameObjects.add(bump); 
-      }
+      checkCollisions();
       
     }// end if not dead
-
+    
+    
+    // clouds don't go away after death
     if(frameCount % 200 == 0){
         cloud1 = new Cloud(100+ width,random(30,height/3), random(.45,.7), 50, 1 );  // x , y, scale, alpha, cloud speed
         gameObjects.add(cloud1);
+    }// end if
         
-    }
-        
-    
-    if(frameCount % 5 == 0 && !dead){
-        
-      for(int i = 0; i<2; i++){
-        Dirt dirt = new Dirt(random(width, width*2), random(ground_y + 4, ground_y + 15)  , game_speed , color(83,83,83) );
-        gameObjects.add(dirt);
-      }
-      
-    }
-     
     Ground_line  ground = new Ground_line(0, ground_y, 0.02);
     gameObjects.add(ground);
     
-    if(!dead){
-      game_speed += ACCELERATION;
-    }
-    
   }// end start game
   
-  if( !dead && start_game ==  true){
-    checkCollisions();
-  }
-  
 }// end draw
+
 
   
 void mousePressed() {
@@ -204,9 +209,11 @@ void mousePressed() {
          restart = true;
          dead = false;
          game_speed = 6;
+         object_creation = 60;
          
-      }
-   }
+      }// end for
+      
+   }// end if 
    
    
    if(!dead){
@@ -215,8 +222,7 @@ void mousePressed() {
    }
    
    
-}
-              
+}             
 
 
 
@@ -259,15 +265,10 @@ void checkCollisions(){
                                ellipse(vertex.x + other.pos.x, vertex.y  + 244,1,1);  // points on cactus
                                ellipse(go.pos.x - 5,go.pos.y + 20, col_circle_size, col_circle_size);  // circle around t-rex
                             }
-                              
-                            stroke(83,83,83);  
-                            
+                            stroke(83,83,83);     
                        }// end inner inner for
-                       
                    }// end inner inner for  
-                   
-                 }// end if to check if cactus close to T_rex
-                 
+                 }// end if to check if cactus close to T_rex    
           }// end inner if
         }// end inner for
       }// end if

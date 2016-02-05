@@ -6,6 +6,7 @@ class T_rex extends GameObject {
   boolean running;
   float jump_height;
   boolean standing;
+  boolean air_time;
   
   PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye, white_bg, arm, lowlegs2, lowlegs3;
   
@@ -366,6 +367,7 @@ class T_rex extends GameObject {
       save_pos = startY;
       this.jump_height = INITIAL_JUMP_VELOCITY;
       this.standing = true;
+      this.air_time = false;
       
       player1 = minim.loadFile("sounds/jump.mp3");
       player2 = minim.loadFile("sounds/crash.mp3");
@@ -444,12 +446,21 @@ class T_rex extends GameObject {
       
       if(this.jumped == true){
         
-           if( pos.y < save_pos){
+           if(pos.y < save_pos){
+             
+             if(frameCount % 4 == 0){
+                air_time = true;
+             }
+             
+             if(air_time == true){
                 pos.y += GRAVITY;
+             }
+             
            }
            
            if(pos.y > save_pos){
                 pos.y = this.save_pos;
+               air_time = false;
            }
       }
       
@@ -562,9 +573,6 @@ class T_rex extends GameObject {
        this.objects.scale(scale);  
        
        shape(objects, super.pos.x, super.pos.y);
-       
   }
-  
-  
   
 }// end T_rex

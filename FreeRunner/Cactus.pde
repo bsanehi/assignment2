@@ -4,10 +4,9 @@ class Cactus extends GameObject{
   
   Cactus(float x, float y, float scale, float speed, int random_cactus){
     
-    this.scale = scale;
+    super(x,y, scale);
+
     this.speed = speed;
-    this.pos.x = x;
-    this.pos.y = y;
     
     part1_w_bg = createShape();
     part1_w_bg.beginShape();

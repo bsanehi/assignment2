@@ -13,9 +13,9 @@ class Menu extends GameObject{
      this.height_menu = height * .1;
      this.position = menu_pos;
      menu_pos += this.height_menu  + 4;
-    // font = loadFont("SegoeUI-150.vlw");
+     font = loadFont("fonts/PressStart2P-150.vlw");
      textAlign(CENTER, CENTER);
-    // textFont(font,width * 0.02);
+     textFont(font,width * 0.02);
     player1 = minim.loadFile("sounds/jump.mp3");
   }
   

@@ -2,9 +2,15 @@ class Score extends GameObject{
   
   int score;
   int high_score;
+  boolean flashing;
+  int score_flash;
+  int num_of_flash;
   
   Score(){
+    flashing = false;
     high_score = 0;
+    score_flash = 0;
+    num_of_flash = 0;
     score = 0;
     player1 = minim.loadFile("sounds/achievement.mp3");
     font = loadFont("fonts/PressStart2P-150.vlw");
@@ -21,6 +27,8 @@ class Score extends GameObject{
         score++;
         
         if(score % 100 == 0){
+           score_flash = score;
+           flashing = true;
            player1.rewind();
            player1.play();
         }
@@ -39,17 +47,39 @@ class Score extends GameObject{
   };
   
   void render(){
-     fill(83,83,83);
-     text = String.format("%05d", score);
-     textFont(font,width * 0.02);
-     text(text,width *.90, 50); 
-     
-     if(dead || restart == true){
-       text = String.format("%05d", high_score);
+    
+    fill(83,83,83);
+    
+    if(flashing == false){
+       text = String.format("%05d", score);
        textFont(font,width * 0.02);
-       text("HI "+ text,width *.74, 50); 
-     }
+       text(text,width *.90, 50); 
+    }
+    
+    if(flashing){
+      
+        if(num_of_flash == 4){
+          flashing = false;
+          num_of_flash = 0;
+        }
+      
+         if(frameCount % 20 == 0){
+            text = String.format("%05d", score_flash);
+            textFont(font,width * 0.02);
+            text(text,width *.90, 50); 
+            
+            num_of_flash++;
+         }
+    }
+       
+    
      
-  };
+    if(dead || restart == true){
+      text = String.format("%05d", high_score);
+      textFont(font,width * 0.02);
+      text("HI "+ text,width *.74, 50); 
+    }
+     
+  }
   
-}
+}// end Score class

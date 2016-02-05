@@ -5,12 +5,12 @@ class Dirt extends GameObject {
   
   Dirt(float x, float y, float speed, color c){
     
-     this.pos.x = x;
-     this.pos.y = y;
+     super(x,y,0);
+    
      this.speed = speed;
      this.c = c;
     
-     dirt_object = createShape(ELLIPSE,0,0, 1, 1);
+     dirt_object = createShape(RECT,0,0, ((int)random(1,4)), 1);
      
      objects = createShape(GROUP);
      objects.addChild(dirt_object);
