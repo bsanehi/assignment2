@@ -2,11 +2,13 @@ class Bumps extends GameObject{
   
   PShape part1, part2, part3, part4, part5, part6;
   
-  Bumps (float x, float y, float scale, int random , float speed){
+  float bump_width;
+  
+  Bumps (float x, float y, float scale, int random , float speed, color c){
     
-    super(x,y,scale);
+    super(x,y,scale,c);
     
-    this.speed = speed;
+    this.speed = (int)speed;
     
     part1 = createShape();
     part1.beginShape();
@@ -70,9 +72,6 @@ class Bumps extends GameObject{
     part2.vertex(0, 0);
     part2.endShape();
     
-    
-    
-    
     part3 = createShape();
     part3.beginShape();
     part3.noStroke();
@@ -110,8 +109,6 @@ class Bumps extends GameObject{
     part4.vertex(120, 5);
     part4.vertex(120, -5);
     part4.endShape();
-    
-    
     
     part5 = createShape();
     part5.beginShape();
@@ -175,6 +172,7 @@ class Bumps extends GameObject{
     part6.vertex(100, 0);
     part6.endShape();
     
+    this.bump_width = part2.width;
     
     if( random == 1 ){
 
@@ -183,7 +181,6 @@ class Bumps extends GameObject{
       objects.addChild(part2);
       objects.addChild(part3);
       objects.addChild(part4);
-      
     }
     else{
       
@@ -200,7 +197,7 @@ class Bumps extends GameObject{
   
   
   void speed(float game_speed){
-    this.speed = game_speed;
+    this.speed = (int)game_speed;
   }
   
     
@@ -208,7 +205,7 @@ class Bumps extends GameObject{
     
     pos.x -= this.speed;
 
-    if (pos.x < -50){
+    if (pos.x < -bump_width){
        gameObjects.remove(this);
     }
     

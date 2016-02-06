@@ -7,11 +7,12 @@ class Cloud extends GameObject{
   
   float cloud_offset = width *0.1f;
   
-  Cloud(float x, float y, float scale, float alpha, float speed){
+  Cloud(float x, float y, float scale, float alpha, float speed, color c){
     
-    super(x,y,scale);  // use this super later when u improve code
+    super(x,y,scale,c);  // use this super later when u improve code
     
     this.alpha = alpha;
+    this.speed = speed;
     
     noFill();
     
@@ -108,7 +109,7 @@ class Cloud extends GameObject{
 
   void update(){
     
-     pos.x = pos.x - this.speed;
+      pos.x = pos.x - this.speed;
       
       if(pos.x < (0 - cloud_offset)){
          gameObjects.remove(this);

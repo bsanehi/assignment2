@@ -5,7 +5,7 @@ class Dirt extends GameObject {
   
   Dirt(float x, float y, float speed, color c){
     
-     super(x,y,0);
+     super(x,y,0,c);
     
      this.speed = speed;
      this.c = c;

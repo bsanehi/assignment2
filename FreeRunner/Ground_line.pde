@@ -2,15 +2,15 @@ class Ground_line extends GameObject{
   
    PShape line;
    
-   Ground_line(float x, float y, float scale){
-    
+   Ground_line(float x, float y, float scale, color c){
+     
        this.pos.x = x;
        this.pos.y = y;
        
        line = createShape();
        line.beginShape();
        line.noStroke();
-       line.fill(83,83,83);
+       line.fill(c);
        line.vertex(0, 0);
        line.vertex(width, 0);
        line.vertex(width, 1);
