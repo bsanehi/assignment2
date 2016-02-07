@@ -15,14 +15,16 @@ class Leaderboard {
     
     background(0);
     
-    Back_menu_button back_button = new Back_menu_button();
+    Back_menu_button back_button = new Back_menu_button(500,color(255,255,255));
     
+    back_button.update();
     back_button.render();
     
     textFont(font,width * 0.03);
     text("Top Score", width/2, 35);
     
     textFont(font,width * 0.01);
+    
     for(int i = 0; i<high_data.size() && i < 10; i++){
       
       text(high_data.get(i).name + " <----> " + high_data.get(i).score, width/2, move_down + (spacing * i ) );

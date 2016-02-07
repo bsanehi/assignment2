@@ -44,7 +44,7 @@ class Menu extends GameObject{
         }
         
         if(button_number == 2 ){
-            show_leaderboard = true;
+          show_leaderboard = true;
         }
         
         if(button_number == 1){

@@ -113,7 +113,7 @@ Ground_line ground;
 
 void setup(){
   
- load_in_high_score();
+  load_in_high_score();
   
   size(1000,500);
   start_game = false;
@@ -247,8 +247,47 @@ void draw(){
     
   }
   
+  if(start_game == false){
+    
+    for(int i = gameObjects.size() - 1 ; i >= 0   ; i--){
+      
+       GameObject go = gameObjects.get(i);
+       
+       if(go instanceof Score){
+           ((Score)go).score = 0;
+           points = 0;
+       }
+       
+       if(go instanceof Cactus || go instanceof Bumps){
+          gameObjects.remove(i);
+       }
+       
+       if(go instanceof Pterodactyl){
+          gameObjects.remove(i);
+       }
+       
+       if(go instanceof Mushroom){
+          gameObjects.remove(i);
+       }
+       
+       restart = true;
+       dead = false;
+       game_speed = 6;
+       object_creation = 60;
+       spawn_wait = false;
+       mushroom_spawned = false;
+       game_in_color = false;
+         
+     }// end for
+    
+  }
   
   if(start_game == true && intro_animation <= 0 ){
+    
+    Back_menu_button back_button = new Back_menu_button(50, color(0,0,0));
+    
+    back_button.update();
+    back_button.render();
     
     for(int i = gameObjects.size() - 1 ; i >= 0   ; i--)
     {
@@ -395,11 +434,15 @@ void mousePressed() {
          dead = false;
          game_speed = 6;
          object_creation = 60;
+         mushroom_spawned = false;
          
       }// end for
       
    }// end if 
    
+   if(dead){
+     
+   }
    
    if(!dead){
       input_new_high_name = false;
