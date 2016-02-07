@@ -21,7 +21,7 @@ class Cactus extends GameObject{
     part1 = createShape();
     part1.beginShape();
     part1.noStroke();
-    part1.fill(83,83,83);
+    part1.fill(cactus_c);
     part1.vertex(0, 10);
     part1.vertex(30, 10);
     part1.vertex(30, 15);
@@ -35,7 +35,7 @@ class Cactus extends GameObject{
     part2 = createShape();
     part2.beginShape();
     part2.noStroke();
-    part2.fill(83,83,83);
+    part2.fill(cactus_c);
     part2.vertex(30,160);
     part2.vertex(50,160);
     part2.vertex(50,80);
@@ -58,7 +58,7 @@ class Cactus extends GameObject{
     part3 = createShape();
     part3.beginShape();
     part3.noStroke();
-    part3.fill(83,83,83);
+    part3.fill(cactus_c);
     part3.vertex(-10,160);
     part3.vertex(-20,160);
     part3.vertex(-20,90);
@@ -94,7 +94,7 @@ class Cactus extends GameObject{
     part4 = createShape();
     part4.beginShape();
     part4.noStroke();
-    part4.fill(83,83,83);
+    part4.fill(cactus_c);
     part4.vertex(120, 30);
     part4.vertex(125, 30);
     part4.vertex(125, 25);
@@ -109,7 +109,7 @@ class Cactus extends GameObject{
     part5 = createShape();
     part5.beginShape();
     part5.noStroke();
-    part5.fill(83,83,83);
+    part5.fill(cactus_c);
     part5.vertex(125,170);
     part5.vertex(110,170);
     part5.vertex(110,110);
@@ -132,7 +132,7 @@ class Cactus extends GameObject{
     part6 = createShape();
     part6.beginShape();
     part6.noStroke();
-    part6.fill(83,83,83);
+    part6.fill(cactus_c);
     part6.vertex(145,110);
     part6.vertex(165,110);
     part6.vertex(165,60);
@@ -164,7 +164,7 @@ class Cactus extends GameObject{
     part7 = createShape();
     part7.beginShape();
     part7.noStroke();
-    part7.fill(83,83,83);
+    part7.fill(cactus_c);
     part7.vertex(195,270);
     part7.vertex(195,130);
     part7.vertex(200,130);
@@ -179,7 +179,7 @@ class Cactus extends GameObject{
     part8 = createShape();
     part8.beginShape();
     part8.noStroke();
-    part8.fill(83,83,83);
+    part8.fill(cactus_c);
     part8.vertex(170,200);
     part8.vertex(170,160);
     part8.vertex(175,160);
@@ -202,7 +202,7 @@ class Cactus extends GameObject{
     part9 = createShape();
     part9.beginShape();
     part9.noStroke();
-    part9.fill(83,83,83);
+    part9.fill(cactus_c);
     part9.vertex(220,200);
     part9.vertex(220,160);
     part9.vertex(225,160);
@@ -235,7 +235,7 @@ class Cactus extends GameObject{
     part10 = createShape();
     part10.beginShape();
     part10.noStroke();
-    part10.fill(83,83,83);
+    part10.fill(cactus_c);
     part10.vertex(280, 10);
     part10.vertex(310, 10);
     part10.vertex(310, 15);
@@ -249,7 +249,7 @@ class Cactus extends GameObject{
     part11 = createShape();
     part11.beginShape();
     part11.noStroke();
-    part11.fill(83,83,83);
+    part11.fill(cactus_c);
     part11.vertex(280,100);
     part11.vertex(260,100);
     part11.vertex(260,40);
@@ -272,7 +272,7 @@ class Cactus extends GameObject{
     part12 = createShape();
     part12.beginShape();
     part12.noStroke();
-    part12.fill(83,83,83);
+    part12.fill(cactus_c);
     part12.vertex(310,160);
     part12.vertex(330,160);
     part12.vertex(330,80);
@@ -400,26 +400,6 @@ class Cactus extends GameObject{
         
     }// end switch 
     
-    
-       /*objects = new PShape();
-        objects.addChild(part1_w_bg);
-        objects.addChild(part1); 
-        objects.addChild(part2); 
-        objects.addChild(part3); 
-        objects.addChild(part4_w_bg);
-        objects.addChild(part4); 
-        objects.addChild(part5); 
-        objects.addChild(part6); 
-        objects.addChild(part7_w_bg);
-        objects.addChild(part7); 
-        objects.addChild(part8); 
-        objects.addChild(part9); 
-        objects.addChild(part10_w_bg);
-        objects.addChild(part10); 
-        objects.addChild(part11); 
-        objects.addChild(part12); 
-        objects.scale(scale);
-     */
     
   }// end Cactus()
   

@@ -15,21 +15,21 @@ class Menu extends GameObject{
      menu_pos += this.height_menu  + 4;
      font = loadFont("fonts/PressStart2P-150.vlw");
      textAlign(CENTER, CENTER);
-     textFont(font,width * 0.02);
-    player1 = minim.loadFile("sounds/jump.mp3");
+     player1 = minim.loadFile("sounds/jump.mp3");
   }
   
   void render(){  
       fill(c);
       rect(pos.x ,  pos.y , width_menu, height_menu );
       fill(255,255,255);
+      textFont(font,width * 0.01);
       text(text, pos.x + (width_menu/2), pos.y + (height_menu/2)); 
       update();
       this.pos = new PVector(width/2 - (width_menu/2),  height/2 - position);
   }
   
   void update(){
-    if(mouseX >= pos.x && mouseX <= (pos.x + this.width_menu) && mouseY <= (pos.y + this.height_menu) &&  mouseY >= pos.y){
+    if(mouseX >= pos.x && mouseX <= (pos.x + this.width_menu) && mouseY <= (pos.y + this.height_menu) &&  mouseY >= pos.y && show_leaderboard == false){
       c = color(200,0,0,100);
       
       player1.rewind();
@@ -43,8 +43,8 @@ class Menu extends GameObject{
           start_game = true;
         }
         
-        if(button_number == 2){
-          
+        if(button_number == 2 ){
+            show_leaderboard = true;
         }
         
         if(button_number == 1){

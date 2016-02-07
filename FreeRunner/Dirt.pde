@@ -8,10 +8,10 @@ class Dirt extends GameObject {
      super(x,y,0,c);
     
      this.speed = speed;
-     this.c = c;
-    
+     
      dirt_object = createShape(RECT,0,0, ((int)random(1,4)), 1);
      
+     fill(c);
      objects = createShape(GROUP);
      objects.addChild(dirt_object);
     
@@ -24,6 +24,8 @@ class Dirt extends GameObject {
   
   
   void update(){
+    
+    fill(c);
     
     pos.x -= this.speed;
 

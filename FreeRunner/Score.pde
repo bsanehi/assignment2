@@ -8,7 +8,7 @@ class Score extends GameObject{
   
   Score(){
     flashing = false;
-    high_score = 0;
+    high_score = parseInt(high_data.get(0).score);
     score_flash = 0;
     num_of_flash = 0;
     score = 0;
@@ -16,7 +16,7 @@ class Score extends GameObject{
     font = loadFont("fonts/PressStart2P-150.vlw");
     textAlign(CENTER, CENTER);
   }
-
+  
   
   void update(){
     
@@ -48,7 +48,7 @@ class Score extends GameObject{
   
   void render(){
     
-    fill(83,83,83);
+    fill(text_c);
     
     if(flashing == false){
        text = String.format("%05d", score);
@@ -74,7 +74,7 @@ class Score extends GameObject{
        
     
      
-    if(dead || restart == true){
+    if(dead || restart == true || high_score > 0){
       text = String.format("%05d", high_score);
       textFont(font,width * 0.02);
       text("HI "+ text,width *.74, 50); 

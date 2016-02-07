@@ -26,11 +26,11 @@ class Ground_line extends GameObject{
    
   void render(){
       shape(objects, super.pos.x, super.pos.y); 
-  };
+  }
   
   void update(){
       gameObjects.remove(this); 
-  };
+  }
   
   
 }// end Ground_line class

@@ -13,7 +13,7 @@ class Bumps extends GameObject{
     part1 = createShape();
     part1.beginShape();
     part1.noStroke();
-    part1.fill(255,255,255);
+    part1.fill(ground_c);
     part1.vertex(5, 0);
     part1.vertex(5, 5);
     part1.vertex(55, 5);
@@ -75,7 +75,7 @@ class Bumps extends GameObject{
     part3 = createShape();
     part3.beginShape();
     part3.noStroke();
-    part3.fill(255,255,255);
+    part3.fill(sky_c);
     part3.vertex(125, -10);
     part3.vertex(125, 0);
     part3.vertex(135, 0);
@@ -113,7 +113,7 @@ class Bumps extends GameObject{
     part5 = createShape();
     part5.beginShape();
     part5.noStroke();
-    part5.fill(255,255,255);
+    part5.fill(ground_c);
     part5.vertex(105, 0);
     part5.vertex(105, 5);
     part5.vertex(155, 5);

@@ -165,6 +165,7 @@ class T_rex extends GameObject {
       loweye = createShape();
       loweye.beginShape();
       loweye.noStroke();
+      loweye.fill(255,255,255);
       loweye.vertex(40,75);
       loweye.vertex(47,75);
       loweye.vertex(47,82);
@@ -246,7 +247,7 @@ class T_rex extends GameObject {
       legs1 = createShape();
       legs1.beginShape();
      // legs1.noStroke();
-      legs1.fill(83,83,83);
+      legs1.fill(t_rex_c);
       legs1.vertex(3,126);
       legs1.vertex(3,150);
       legs1.vertex(10,150);
@@ -317,6 +318,7 @@ class T_rex extends GameObject {
       eye1 = createShape();
       eye1.beginShape();
       eye1.noStroke();
+      eye1.fill(255,255,255);
       eye1.vertex(10,10);
       eye1.vertex(17,10);
       eye1.vertex(17,17);
@@ -327,6 +329,7 @@ class T_rex extends GameObject {
       eye2 = createShape();
       eye2.beginShape();
       eye2.noStroke();
+      eye2.fill(255,255,255);
       eye2.vertex(10,10);
       eye2.vertex(22,10);
       eye2.vertex(22,22);
@@ -353,7 +356,7 @@ class T_rex extends GameObject {
       white_bg = createShape();
       white_bg.beginShape();
       white_bg.noStroke();
-      white_bg.fill(255,255,255);
+      white_bg.fill(sky_c);
       white_bg.vertex(-55,130); // 128
       white_bg.vertex(22,130); // 128
       white_bg.vertex(22,135); // 137
@@ -410,6 +413,7 @@ class T_rex extends GameObject {
   
   void render(){
     
+     //objects = new PShape();
     
     if(dead){   
          objects = new PShape();

@@ -2,8 +2,8 @@ class Game_over extends GameObject{
   
   PShape part1, part2;
   
-  float gameOver_width;
-  float gameOver_height;
+  float this_width;
+  float this_height;
   
   Game_over(){
     
@@ -90,8 +90,8 @@ class Game_over extends GameObject{
     part2.endShape();
     
     
-    gameOver_width = part1.width;
-    gameOver_height = part1.height;
+    this_width = part1.width;
+    this_height = part1.height;
     
     objects = createShape(GROUP);
     objects.addChild(part1);
@@ -102,11 +102,13 @@ class Game_over extends GameObject{
   
   void render(){
     if(dead){
+      
+      fill(text_c);
 
        //textFont(font,width * 0.02);
        text("G A M E   O V E R",width/2, height *.3); 
             
-       shape(objects, width/2 - (gameOver_width/2), height/2 - (gameOver_height/2)); 
+       shape(objects, width/2 - (this_width/2), height/2 - (this_height/2)); 
     }
   }
   
