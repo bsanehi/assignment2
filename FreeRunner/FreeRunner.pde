@@ -84,7 +84,6 @@ boolean mushroom_spawned;
 boolean game_in_color;
 
 
-
 Leaderboard leaderboard;
 
 color sky_c, ground_c, cactus_c, t_rex_c, cloud_c, pterodactyl_c, text_c;
@@ -160,14 +159,12 @@ void setup(){
   
   mushroom_spawned = false;
   
-  
 }// end setup
 
 
 
 
 void game_color(){
-  
   
   if(game_in_color){
     
@@ -193,6 +190,20 @@ void game_color(){
   }
   
 }
+
+
+
+void reset_game(){
+  
+   restart = true;
+   dead = false;
+   game_speed = 6;
+   object_creation = 60;
+   spawn_wait = false;
+   mushroom_spawned = false;
+   game_in_color = false;   
+   
+}// end reset_game
 
 
 
@@ -258,26 +269,12 @@ void draw(){
            points = 0;
        }
        
-       if(go instanceof Cactus || go instanceof Bumps){
+       if(go instanceof Cactus || go instanceof Bumps || go instanceof Pterodactyl || go instanceof Mushroom ){
           gameObjects.remove(i);
        }
        
-       if(go instanceof Pterodactyl){
-          gameObjects.remove(i);
-       }
+       reset_game();
        
-       if(go instanceof Mushroom){
-          gameObjects.remove(i);
-       }
-       
-       restart = true;
-       dead = false;
-       game_speed = 6;
-       object_creation = 60;
-       spawn_wait = false;
-       mushroom_spawned = false;
-       game_in_color = false;
-         
      }// end for
     
   }
@@ -352,7 +349,6 @@ void draw(){
         
      }// end inner if
      
-     
       game_speed += ACCELERATION;
       
       if(object_creation >= 10){
@@ -379,7 +375,6 @@ void draw(){
     
   }// end start game
   
-
   input_name();
   
 }// end draw
@@ -389,16 +384,11 @@ void draw(){
   
 void mousePressed() {
   
-   if(show_leaderboard == true){
-   //  show_leaderboard = false;
-   }
-
    if(dead){
      
+      reset_game();
       game_in_color = false;
       game_color();
-
-      spawn_wait = false;
      
       for(int i = gameObjects.size() - 1 ; i >= 0   ; i--){
          GameObject go = gameObjects.get(i);
@@ -418,24 +408,10 @@ void mousePressed() {
              points = 0;
          }
          
-         if(go instanceof Cactus || go instanceof Bumps){
+         if(go instanceof Cactus || go instanceof Bumps  || go instanceof Pterodactyl || go instanceof Mushroom){
             gameObjects.remove(i);
          }
-         
-         if(go instanceof Pterodactyl){
-            gameObjects.remove(i);
-         }
-         
-         if(go instanceof Mushroom){
-            gameObjects.remove(i);
-         }
-         
-         restart = true;
-         dead = false;
-         game_speed = 6;
-         object_creation = 60;
-         mushroom_spawned = false;
-         
+
       }// end for
       
    }// end if 
@@ -501,7 +477,9 @@ void checkCollisions(){
                                ellipse(vertex.x + other.pos.x, vertex.y  + 244,1,1);  // points on cactus
                                ellipse(go.pos.x - 5,go.pos.y + T_rex_circle_y, col_circle_size, col_circle_size);  // circle around t-rex
                             }
+                            
                             stroke(83,83,83);     
+                            
                        }// end inner inner for
                    }// end inner inner for  
                  }// end if to check if cactus close to T_rex    
@@ -573,7 +551,7 @@ void input_name(){
            
         }
         
-      }
+      }// end for
       
       if(input_new_high_name){
          fill(text_c);

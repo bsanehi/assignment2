@@ -105,7 +105,6 @@ class Game_over extends GameObject{
       
       fill(text_c);
 
-       //textFont(font,width * 0.02);
        text("G A M E   O V E R",width/2, height *.3); 
             
        shape(objects, width/2 - (this_width/2), height/2 - (this_height/2)); 

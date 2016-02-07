@@ -92,11 +92,6 @@ class Back_menu_button extends Game_over {
      
   }
   
-  void remove_gameover(){
-    
-    //gameObjects.remove(this);
-  }
-  
   void update(){
     
     if(mouseX >= pos.x  && mouseX <= (pos.x + (this.this_width/2)) && mouseY <= (pos.y + (this.this_height/2)) &&  mouseY >= pos.y){
@@ -104,6 +99,21 @@ class Back_menu_button extends Game_over {
       if(mousePressed){
         show_leaderboard = false;
         start_game = false;
+       
+         
+        for(int i = gameObjects.size() - 1 ; i >= 0   ; i--){
+           GameObject go = gameObjects.get(i);
+           
+           t_rex_c = color(83,83,83);
+           sky_c = color(250,250,250);
+           
+           if(go instanceof T_rex){
+             gameObjects.remove(i);
+             tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', t_rex_c ); // x , y , scale, jump button, duck button , color
+             gameObjects.add(tRex);
+           }
+        } 
+         
       }
       
     }
