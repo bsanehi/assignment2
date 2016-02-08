@@ -5,26 +5,34 @@ class Menu extends GameObject{
   float position;
   int button_number = 0;
   
-  
-  Menu(String x,int button_num){
-     this.button_number = button_num;
-     this.text = x;
+  Menu(String text,int button_number){
+    
+     this.button_number = button_number;
+     this.text = text;
+     
      this.width_menu = width *.4;
      this.height_menu = height * .1;
+     
      this.position = menu_pos;
-     menu_pos += this.height_menu  + 4;
+     menu_pos += this.height_menu + 4; // 4 used for paddding
+     
      font = loadFont("fonts/PressStart2P-150.vlw");
      textAlign(CENTER, CENTER);
+     
      player1 = minim.loadFile("sounds/jump.mp3");
   }
   
   void render(){  
+    
       fill(c);
       rect(pos.x ,  pos.y , width_menu, height_menu );
+      
       fill(255,255,255);
       textFont(font,width * 0.01);
       text(text, pos.x + (width_menu/2), pos.y + (height_menu/2)); 
-      update();
+      
+      update(); // update self  - no point in adding Menu to gameObject as it will slow down game.
+      
       this.pos = new PVector(width/2 - (width_menu/2),  height/2 - position);
   }
   
@@ -48,7 +56,7 @@ class Menu extends GameObject{
         }
         
         if(button_number == 1){
-          
+          // other option not used
         }
         
       }

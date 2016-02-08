@@ -1,6 +1,5 @@
 class Dirt extends GameObject {
   
-  
   PShape dirt_object;
   
   Dirt(float x, float y, float speed, color c){

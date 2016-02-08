@@ -82,11 +82,9 @@ String text;
 boolean show_leaderboard;
 boolean mushroom_spawned;
 boolean game_in_color;
-
-
 Leaderboard leaderboard;
-
 color sky_c, ground_c, cactus_c, t_rex_c, cloud_c, pterodactyl_c, text_c;
+
 
 // Game Menu
 //Menu sub_menu_1;
@@ -134,15 +132,19 @@ void setup(){
   
   game_speed = 6;
 
+  // used to show collision detection code bewteen T-rex and Cactus : it may slow down game if set to "true" - as it will need to render other shapes.
   show_collision = false;
+  
+  // The T-rex collision circle size
   col_circle_size = 38;
   col_circle_radius = col_circle_size/2;
   
   game_in_color = false;
   
+  // set the game color
   game_color();
   
-  // player
+  // player sprite
   tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', t_rex_c ); // x , y , scale, jump button, duck button , color
   gameObjects.add(tRex);
   
@@ -168,13 +170,13 @@ void game_color(){
   
   if(game_in_color){
     
-     t_rex_c = color(149,75,46);
-     sky_c = color(0,0,220);
-     ground_c = color(255,172,80);
-     cactus_c = color(72,144,40);
-     cloud_c = color(255,255,255);
-     pterodactyl_c = color(102,207,56);
-     text_c = color(250,250,250);
+    t_rex_c = color(149,75,46);
+    sky_c = color(0,0,220);
+    ground_c = color(255,172,80);
+    cactus_c = color(72,144,40);
+    cloud_c = color(255,255,255);
+    pterodactyl_c = color(102,207,56);
+    text_c = color(250,250,250);
     
   }
   else{
@@ -189,7 +191,7 @@ void game_color(){
     
   }
   
-}
+}// end game_color
 
 
 
@@ -277,7 +279,7 @@ void draw(){
        
      }// end for
     
-  }
+  }// end if
   
   if(start_game == true && intro_animation <= 0 ){
     
@@ -394,6 +396,8 @@ void mousePressed() {
          GameObject go = gameObjects.get(i);
          
          if(go instanceof T_rex){
+           
+           // have to recreate player in order to reset color
            gameObjects.remove(i);
            tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', t_rex_c ); // x , y , scale, jump button, duck button , color
            gameObjects.add(tRex);
@@ -589,6 +593,7 @@ void save_high_score(String text){
    
    String temp_string = text + "," + points;
    
+   // check to see if high_data contains any value that needs to be copied to temp in order to save again
    if(high_data.size() > 0){
      
      ArrayList<Leaderboard_data> temp = new ArrayList<Leaderboard_data>();
@@ -603,8 +608,8 @@ void save_high_score(String text){
         output.println(temp.get(i).name + "," + temp.get(i).score);
      }
      
-     output.flush(); // Writes the remaining data to the file
-     output.close(); // Finishes the file
+     output.flush();
+     output.close(); 
 
    }
    else{
@@ -620,11 +625,11 @@ void save_high_score(String text){
 
 void load_in_high_score(){
   
-  String filename = "data/HighScore.csv";
+  String filepath = "data/HighScore.csv";
 
-  String[] lines = loadStrings(filename); // files must be in the data folder
+  String[] lines = loadStrings(filepath);
   
-  for(int i = 0; i<lines.length; i++){
+  for(int i = 0; i<lines.length && i < 10; i++){ // added check to read-in only 10
       high_data.add(new Leaderboard_data(lines[i]));
   }// end for loop
     

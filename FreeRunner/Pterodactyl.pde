@@ -5,7 +5,7 @@ class Pterodactyl extends GameObject{
   float Pterodactyl_width;
   boolean fly;
   
-  Pterodactyl(float x, float y, float scale, float speed, color c){
+  Pterodactyl(float x, float y, float scale, float speed,color c){
     
     super(x,y,scale,c);
     
@@ -109,6 +109,7 @@ class Pterodactyl extends GameObject{
     
     fly = false;
     stop_flying = false;
+    this.speed = speed;
 
     objects.addChild(head); 
     objects.addChild(body);

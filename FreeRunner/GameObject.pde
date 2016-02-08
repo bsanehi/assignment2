@@ -4,7 +4,6 @@ abstract class GameObject
   PShape objects;
   PVector pos;
   
-  PFont font;
   String text;
   
   float speed = 1;
@@ -19,7 +18,7 @@ abstract class GameObject
   
   GameObject()
   {
-     //Constructor chaining
+     // Constructor chaining
      this(width * 0.5f, height  * 0.5f, 50 , color(83,83,83) );   
   } 
   

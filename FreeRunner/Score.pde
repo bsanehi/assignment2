@@ -73,8 +73,7 @@ class Score extends GameObject{
     }
        
     
-     
-    if(dead || restart == true || high_score > 0){
+    if(dead || restart == true && high_score > 0){
       text = String.format("%05d", high_score);
       textFont(font,width * 0.02);
       text("HI "+ text,width *.74, 50); 
