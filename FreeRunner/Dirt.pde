@@ -13,7 +13,7 @@ class Dirt extends GameObject {
      fill(c);
      objects = createShape(GROUP);
      objects.addChild(dirt_object);
-    
+     
   }
   
   

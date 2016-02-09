@@ -79,7 +79,14 @@ boolean input_new_high_name;
 PFont font;
 String text;
 boolean show_leaderboard;
-boolean mushroom_spawned;
+
+
+boolean mushroom_taken;
+boolean spawn_mushroom;
+boolean spawn_time;
+int time;
+
+
 boolean game_in_color;
 Leaderboard leaderboard;
 color sky_c, ground_c, cactus_c, t_rex_c, cloud_c, pterodactyl_c, text_c;
@@ -108,6 +115,8 @@ Ground_line ground;
 
 
 void setup(){
+  
+  frameRate(60);
   
   load_in_high_score();
   
@@ -143,6 +152,10 @@ void setup(){
   // set the game color
   game_color();
   
+  noStroke();
+  Back_menu_button back_button = new Back_menu_button(50, color(0,0,0));
+  gameObjects.add(back_button);
+  
   // player sprite
   tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', t_rex_c ); // x , y , scale, jump button, duck button , color
   gameObjects.add(tRex);
@@ -157,7 +170,9 @@ void setup(){
   leaderboard = new Leaderboard();
   show_leaderboard = false;
   
-  mushroom_spawned = false;
+  mushroom_taken = false;
+  spawn_time = false;
+  time = 0;
   
 }// end setup
 
@@ -194,13 +209,14 @@ void game_color(){
 
 
 void reset_game(){
-  
+   time = 0;
    restart = true;
    dead = false;
    game_speed = 6;
    object_creation = 60;
    spawn_wait = false;
-   mushroom_spawned = false;
+   mushroom_taken = false;
+  // make_mushroom = false;
    game_in_color = false;   
    
 }// end reset_game
@@ -208,6 +224,7 @@ void reset_game(){
 
 
 void draw(){
+  
   
   game_color();
   
@@ -258,6 +275,8 @@ void draw(){
     
   }
   
+  
+  
   if(start_game == false){
     
     for(int i = gameObjects.size() - 1 ; i >= 0   ; i--){
@@ -277,14 +296,12 @@ void draw(){
        
      }// end for
     
-  }// end if
+  }// end if 
+  
+  
+  
   
   if(start_game == true && intro_animation <= 0 ){
-    
-    Back_menu_button back_button = new Back_menu_button(50, color(0,0,0));
-    
-    back_button.update();
-    back_button.render();
     
     for(int i = gameObjects.size() - 1 ; i >= 0   ; i--)
     {
@@ -292,8 +309,12 @@ void draw(){
        go.update();
        go.render();
        
-       if(go instanceof Dirt || go instanceof Bumps || go instanceof Cactus || go instanceof Pterodactyl || go instanceof Mushroom){
+       if(go instanceof Dirt || go instanceof Bumps || go instanceof Cactus || go instanceof Mushroom){
          go.speed = game_speed;
+       }
+       
+       if(go instanceof Pterodactyl){
+          go.speed = game_speed + 0.5;
        }
        
        if(go instanceof Score){
@@ -301,81 +322,96 @@ void draw(){
          
          if(((Score)go).score > ((Score)go).high_score){    
             input_new_high_name = true;   
-            text = "";
+            text = ""; // clear text as user needs to type in their name
          }  
        }
        
-       
     }// end for
     
+      
+    
     if(!dead){
-            
+      
+      if(points > 400 && points % 420 == 0 && !game_in_color){
+        spawn_mushroom = true;
+      }
+      
       if(frameCount % ((int)object_creation) == 0){
         
-          if(points <= 425 && points >= 410 && mushroom_spawned == false || points <= 1025 && points >= 1010 && mushroom_spawned == false ){
-            
-              spawn_wait = true;
-              mushroom_spawned = true;
-              Mushroom mushroom = new Mushroom(width, ground_y - 20, 0.3);
-              gameObjects.add(mushroom); 
+        if(spawn_mushroom == true && mushroom_taken == false){ 
+          
+          spawn_mushroom = false;
+          Mushroom mushroom = new Mushroom(width, ground_y - 20, 0.3);
+          gameObjects.add(mushroom); 
+          spawn_wait = true;
 
-          }else if(spawn_wait == false && mushroom_spawned == false){
-            
-             if(points >= 600){
-                  
-                if((int)random(1,3) == 1){
-                   Pterodactyl pterodactyl = new Pterodactyl(width, random(ground_y- 75, ground_y -20), 0.4, game_speed, color(pterodactyl_c));
-                   gameObjects.add(pterodactyl);      
-                 }
-                 else{
-                    Cactus cactus = new Cactus( random(width,width),ground_y - 46, 0.20 , game_speed, (int)random(1,9), color(83,83,83));
-                    gameObjects.add(cactus); 
-                 }
+        }else if(spawn_wait == false){
+          
+           if(points >= 600){
+                
+              if((int)random(1,3) == 1){
+                 Pterodactyl pterodactyl = new Pterodactyl(width, random(ground_y- 75, ground_y -20), 0.4, game_speed + 0.5, color(pterodactyl_c));
+                 gameObjects.add(pterodactyl);      
+              }
+              else{
+                 Cactus cactus = new Cactus(width,ground_y - 46, 0.20 , game_speed, (int)random(1,9), color(83,83,83));
+                 gameObjects.add(cactus); 
+              }
                    
-             }
-             else {
-                Cactus cactus = new Cactus( random(width,width),ground_y - 46, 0.20 , game_speed, (int)random(1,9), color(83,83,83));
-                gameObjects.add(cactus); 
-             }
-               
-             
-             Bumps bump = new Bumps(random(width,width + 240), ground_y, 0.3, (int)random(1,3) , game_speed, color(83,83,83));
-             gameObjects.add(bump); 
+         }
+         else{
+            Cactus cactus = new Cactus(width,ground_y - 46, 0.20 , game_speed, (int)random(1,9), color(83,83,83));
+            gameObjects.add(cactus); 
+         }
+          
+           
+           Bumps bump = new Bumps(width + (int)random(0,150), ground_y, 0.3, (int)random(1,3) , game_speed, color(83,83,83));
+           gameObjects.add(bump); 
  
-         }// end else if
+         }
           
       }// end inner if
       
-     if(frameCount % 8 == 0){
+  
+      
+       if(frameCount % 8 == 0){
+         
+          for(int i = 0; i<2; i++){
+             Dirt dirt = new Dirt(random(width, width*2), random(ground_y + 4, ground_y + 15)  , game_speed , color(0,0,0) );
+             gameObjects.add(dirt);
+          }
+          
+       }// end inner if
        
-        for(int i = 0; i<2; i++){
-           Dirt dirt = new Dirt(random(width, width*2), random(ground_y + 4, ground_y + 15)  , game_speed , color(0,0,0) );
-           gameObjects.add(dirt);
-        }
-        
-     }// end inner if
      
       game_speed += ACCELERATION;
+      
       
       if(object_creation >= 10){
         object_creation -= ACCELERATION * 1.7;
       }
-      
+
       checkCollisions();
       
-      if(spawn_wait == true && frameCount % 240 == 0 && mushroom_spawned == false){
-         spawn_wait = false;
-      }
       
     }// end if not dead
     
+    
+    if(spawn_wait == true){             
+       time++;
+    }
+    
+    if(time == 300){
+      spawn_wait = false;
+      time = 0;
+    }
     
     // clouds don't go away after death
     if(frameCount % 200 == 0){
         cloud = new Cloud(100+ width,random(30,height/3), random(.45,.7), 50, 1 , color(cloud_c) );  // x , y, scale, alpha, cloud speed
         gameObjects.add(cloud);
     }// end if
-        
+    
     Ground_line  ground = new Ground_line(0, ground_y, 0.02, color(83,83,83));
     gameObjects.add(ground);
     
@@ -386,6 +422,24 @@ void draw(){
   }
   
 }// end draw
+
+
+
+
+
+void make_some_mushroom(){
+      
+   Mushroom mushroom = new Mushroom(width, ground_y - 20, 0.3);
+   gameObjects.add(mushroom); 
+         
+   // when Mushroom spawns wait 5 seconds before spawning anything else    
+   if( time == 250 && spawn_wait == true && spawn_time) {
+       spawn_wait = false;
+       spawn_time = false;
+    }
+    
+   spawn_mushroom = false;
+}
 
 
 
@@ -418,21 +472,28 @@ void mousePressed() {
              points = 0;
          }
          
-         if(go instanceof Cactus || go instanceof Bumps  || go instanceof Pterodactyl || go instanceof Mushroom){
+         if(go instanceof Cactus || go instanceof Bumps  || go instanceof Pterodactyl || go instanceof Mushroom || go instanceof Back_menu_button){
             gameObjects.remove(i);
          }
 
       }// end for
+      
+      // add back menu button
+      noStroke();
+      Back_menu_button back_button = new Back_menu_button(50, color(0,0,0));
+      gameObjects.add(back_button);
       
    }// end if 
    
    if(!dead){
       input_new_high_name = false;
       gameOver = new Game_over();
-      gameObjects.add(gameOver);
+      gameObjects.add(gameOver);  
    }
    
-}// end mousePressed()             
+}// end mousePressed()      
+
+
 
 
 
@@ -463,16 +524,15 @@ void checkCollisions(){
                         
                        for(int m = 0; m < (((Cactus)other).objects.getChild(k).getVertexCount()); m++){  // get vertex count
                             
+                            // point on cactus
                             PVector vertex = ((Cactus)other).objects.getChild(k).getVertex(m);        
                             vertex.div(5);
                             
                             if(dist(vertex.x + other.pos.x,   vertex.y + 244,     go.pos.x - 5, go.pos.y + T_rex_circle_y) < col_circle_radius ){
                               
                               stroke(255,0,0);
-                              game_speed = 0; 
                               ((T_rex)go).dead();
-                              stop_flying = true;
-                              dead = true;
+                              died();
                             }
                             else{
                                stroke(0,255,0);
@@ -489,20 +549,22 @@ void checkCollisions(){
                        }// end inner inner for
                    }// end inner inner for  
                  }// end if to check if cactus close to T_rex    
-          }// end inner if
+                 
+          }// end instanceof Cactus
           
           
-          if(other instanceof Pterodactyl){ // Check the type of object
+          
+          if(other instanceof Pterodactyl){ 
             
             if(other.pos.x <= go.pos.x + 100){ 
 
                 if(dist(other.pos.x + 25, other.pos.y , go.pos.x, go.pos.y + T_rex_circle_y) < 25){
-                      game_speed = 0; 
+                       died();
                       ((T_rex)go).dead();
-                      dead = true;
                 }
               }
-          }
+          }// end instanceof Pterodactyl
+          
           
           
           if(other instanceof Mushroom){
@@ -512,18 +574,24 @@ void checkCollisions(){
                 if(dist(other.pos.x, other.pos.y + 10, go.pos.x, go.pos.y + T_rex_circle_y) < 25){
                
                      ((Mushroom)other).play_sound();
-                     mushroom_spawned = false;
+                     mushroom_taken = true;
+                     
+                     // remove Mushroom
                      gameObjects.remove(j);
                      game_in_color = true;
                      game_color();
                      
+                     // remove player
                      gameObjects.remove(i);
+                     
+                     // readd player with fixed colors
                      tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', t_rex_c ); // x , y , scale, jump button, duck button , color
                      gameObjects.add(tRex);
                 }
             }
             
-          }
+          }// end instanceof Mushroom
+          
           
         }// end inner for
       }// end if
@@ -531,6 +599,13 @@ void checkCollisions(){
 }// end checkCollisions 
 
 
+
+
+void died(){
+  
+   game_speed = 0; 
+   dead = true;
+}
 
 
 

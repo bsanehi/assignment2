@@ -121,8 +121,7 @@ class Pterodactyl extends GameObject{
     
     pos.x -= this.speed;
 
-    if (pos.x < -Pterodactyl_width)
-    {
+    if (pos.x < -Pterodactyl_width){
        gameObjects.remove(this);
     }
     

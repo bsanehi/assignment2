@@ -197,7 +197,6 @@ class T_rex extends GameObject {
       arm.vertex(13,127);
       arm.endShape();
       
-      
       lowlegs2 = createShape();
       lowlegs2.beginShape();
      // lowlegs2.noStroke();
@@ -350,8 +349,6 @@ class T_rex extends GameObject {
       eyeBall.vertex(13,13);
       eyeBall.scale(1.2);
       eyeBall.endShape();
-     
-      
       
       white_bg = createShape();
       white_bg.beginShape();
@@ -362,7 +359,6 @@ class T_rex extends GameObject {
       white_bg.vertex(22,135); // 137
       white_bg.vertex(-55,135); // 137
       white_bg.endShape(); 
-      
       
       objects.addChild(head); 
       objects.addChild(mouth1);
@@ -408,7 +404,8 @@ class T_rex extends GameObject {
       
     }
     
-  }// end update();
+  }// end update()
+  
   
   
   void render(){
@@ -417,12 +414,12 @@ class T_rex extends GameObject {
     
     if(dead){   
          objects = new PShape();
-         objects.addChild(head); // 0
+         objects.addChild(head); 
          objects.addChild(mouth2);
          objects.addChild(eye2);
          objects.addChild(eyeBall);
-         objects.addChild(body); // 1
-         objects.addChild(legs1); // 2
+         objects.addChild(body); 
+         objects.addChild(legs1); 
          this.objects.scale(scale);  
     }
     else{
@@ -434,11 +431,11 @@ class T_rex extends GameObject {
       if(this.jumped == false){
         
          objects = new PShape();
-         objects.addChild(head); // 0
+         objects.addChild(head); 
          objects.addChild(mouth1);
          objects.addChild(eye1);
-         objects.addChild(body); // 1
-         objects.addChild(legs1); // 2
+         objects.addChild(body); 
+         objects.addChild(legs1); 
          this.objects.scale(scale);  
         
          pos.y -=  this.jump_height;
@@ -567,17 +564,13 @@ class T_rex extends GameObject {
       }
       
       if(pos.y == save_pos){
-        
         standing = false;
-        
-      }// end outer if
-      
+      } 
   }
   
   
   void dead(){
     
-       dead = true;
        player2.rewind();
        player2.play();
        objects = new PShape();

@@ -173,7 +173,6 @@ class Mushroom extends GameObject {
 
     if (pos.x < 0)
     {
-       mushroom_spawned = false;
        gameObjects.remove(this);
     }
     

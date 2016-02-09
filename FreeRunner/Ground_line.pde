@@ -24,13 +24,12 @@ class Ground_line extends GameObject{
    }// end Ground_line constructor
    
    
-  void render(){
-      shape(objects, super.pos.x, super.pos.y); 
-  }
-  
   void update(){
       gameObjects.remove(this); 
   }
   
+  void render(){
+      shape(objects, super.pos.x, super.pos.y); 
+  }
   
 }// end Ground_line class

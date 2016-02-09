@@ -22,6 +22,8 @@ class Menu extends GameObject{
      player1 = minim.loadFile("sounds/jump.mp3");
   }
   
+  
+  
   void render(){  
     
       fill(c);
@@ -35,6 +37,7 @@ class Menu extends GameObject{
       
       this.pos = new PVector(width/2 - (width_menu/2),  height/2 - position);
   }
+  
   
   void update(){
     if(mouseX >= pos.x && mouseX <= (pos.x + this.width_menu) && mouseY <= (pos.y + this.height_menu) &&  mouseY >= pos.y && show_leaderboard == false){

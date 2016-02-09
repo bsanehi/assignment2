@@ -86,21 +86,13 @@ class Back_menu_button extends Game_over {
   }
   
   
-  void render(){
-    
-     shape(objects, pos.x, pos.y ); 
-     
-  }
-  
   void update(){
     
-    if(mouseX >= pos.x  && mouseX <= (pos.x + (this.this_width/2)) && mouseY <= (pos.y + (this.this_height/2)) &&  mouseY >= pos.y){
+    if(mouseX >= pos.x && mouseX <= (pos.x + (this_width/2)) && mouseY <= (pos.y + (this_height/2)) &&  mouseY >= pos.y && mousePressed){
       
-      if(mousePressed){
         show_leaderboard = false;
         start_game = false;
        
-         
         for(int i = gameObjects.size() - 1 ; i >= 0   ; i--){
            GameObject go = gameObjects.get(i);
            
@@ -112,13 +104,16 @@ class Back_menu_button extends Game_over {
              tRex = new T_rex(70 , height/2 , 0.3, 'W', 'S', t_rex_c ); // x , y , scale, jump button, duck button , color
              gameObjects.add(tRex);
            }
-        } 
-         
-      }
-      
+           
+        }     
+        
     }
     
   }// end update
   
+  
+  void render(){
+     shape(objects, pos.x, pos.y ); 
+  }
   
 }// end Back_menu_button
