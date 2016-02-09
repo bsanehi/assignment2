@@ -74,7 +74,6 @@ final float ACCELERATION = 0.001;
 float object_creation;
 float T_rex_circle_y = 20;
 int points; // used for spawning Pterodactyl
-boolean stop_flying;
 boolean spawn_wait;
 boolean input_new_high_name;
 PFont font;
@@ -149,7 +148,6 @@ void setup(){
   gameObjects.add(tRex);
   
   spawn_wait = false;
-  
   input_new_high_name = false;
   
   font = loadFont("fonts/PressStart2P-150.vlw");
@@ -300,7 +298,13 @@ void draw(){
        
        if(go instanceof Score){
          points = ((Score)go).score;
+         
+         if(((Score)go).score > ((Score)go).high_score){    
+            input_new_high_name = true;   
+            text = "";
+         }  
        }
+       
        
     }// end for
     
@@ -359,7 +363,7 @@ void draw(){
       
       checkCollisions();
       
-      if(spawn_wait == true && frameCount % 200 == 0 && mushroom_spawned == false){
+      if(spawn_wait == true && frameCount % 240 == 0 && mushroom_spawned == false){
          spawn_wait = false;
       }
       
@@ -377,7 +381,9 @@ void draw(){
     
   }// end start game
   
-  input_name();
+  if(dead && input_new_high_name){
+    input_name_area();
+  }
   
 }// end draw
 
@@ -419,10 +425,6 @@ void mousePressed() {
       }// end for
       
    }// end if 
-   
-   if(dead){
-     
-   }
    
    if(!dead){
       input_new_high_name = false;
@@ -493,18 +495,12 @@ void checkCollisions(){
           if(other instanceof Pterodactyl){ // Check the type of object
             
             if(other.pos.x <= go.pos.x + 100){ 
-              
-             //    noFill();
-           //      ellipse(other.pos.x + 25, other.pos.y ,25,25);
-                 //ellipse(go.pos.x - 5,go.pos.y + T_rex_circle_y, col_circle_size, col_circle_size);  // circle around t-rex
-            
+
                 if(dist(other.pos.x + 25, other.pos.y , go.pos.x, go.pos.y + T_rex_circle_y) < 25){
                       game_speed = 0; 
                       ((T_rex)go).dead();
                       dead = true;
-                      stop_flying = true;
                 }
-            
               }
           }
           
@@ -538,50 +534,29 @@ void checkCollisions(){
 
 
 
-void input_name(){
+void input_name_area(){
   
-   if(dead == true){
-    
-      for(int i = gameObjects.size() - 1; i >= 0 ; i--){
-        
-        GameObject go = gameObjects.get(i);
-        
-        if(go instanceof Score){
-        
-           if(((Score)go).score > ((Score)go).high_score){    
-              input_new_high_name = true;   
-              text = "";
-           }
-           
-        }
-        
-      }// end for
-      
-      if(input_new_high_name){
-         fill(text_c);
-         textFont(font,width * 0.02);
-         text("NEW  HIGH  SCORE!",width/2, height * .75); 
-         
-         stroke(text_c);
-         noFill();
-         rect(width/2 - 150,height/2 + 150, 300,40);
-         textFont(font,width * 0.02);
-         text(text,width/2, height/2 + 170);
-         
-         if(text.length() < 1){
-           
-            if(frameCount % 30 == 0){
-              fill(0,0,0);
-              rect(width/2,height/2 + 160, 5,20);
-            }
-           
-         }// end inner if
-         
-      }// end outer if
-    
-   }// end outer outer if
+   fill(text_c);
+   textFont(font,width * 0.02);
+   text("NEW  HIGH  SCORE!",width/2, height * .75); 
    
-}// end input name
+   stroke(text_c);
+   noFill();
+   rect(width/2 - 150,height/2 + 150, 300,40);
+   textFont(font,width * 0.02);
+   text(text,width/2, height/2 + 170);
+   
+   if(text.length() < 1){
+     
+      if(frameCount % 30 == 0){
+        fill(0,0,0);
+        rect(width/2,height/2 + 160, 5,20);
+      }
+     
+   }// end inner if
+   
+}// end input_name_area
+
 
 
 
@@ -608,13 +583,13 @@ void save_high_score(String text){
         output.println(temp.get(i).name + "," + temp.get(i).score);
      }
      
-     output.flush();
-     output.close(); 
-
    }
    else{
      output.println(temp_string);
    }
+   
+   output.flush();
+   output.close(); 
    
    high_data = new ArrayList<Leaderboard_data>();
    load_in_high_score();
@@ -623,19 +598,25 @@ void save_high_score(String text){
 
 
 
+
+
 void load_in_high_score(){
   
   String filepath = "data/HighScore.csv";
-
-  String[] lines = loadStrings(filepath);
   
-  for(int i = 0; i<lines.length && i < 10; i++){ // added check to read-in only 10
-      high_data.add(new Leaderboard_data(lines[i]));
-  }// end for loop
+  try{
     
-  
-  if(high_data.size() < 1){
-     high_data.add(new Leaderboard_data("cpu, 0"));
+    String[] lines = loadStrings(filepath);
+    
+    for(int i = 0; i<lines.length && i < 10; i++){ // added check to read-in only 10
+        high_data.add(new Leaderboard_data(lines[i]));
+    }// end for loop
+    
+  } catch(Exception e){
+     e.printStackTrace();
+     output = createWriter("data/HighScore.csv"); 
+     output.flush();
+     output.close();  
   }
-      
+  
 }// end load_in_high_score

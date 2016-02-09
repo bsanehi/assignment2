@@ -108,7 +108,6 @@ class Pterodactyl extends GameObject{
     Pterodactyl_width = head.width + body.width;
     
     fly = false;
-    stop_flying = false;
     this.speed = speed;
 
     objects.addChild(head); 
@@ -131,7 +130,7 @@ class Pterodactyl extends GameObject{
     
   void render(){
     
-    if(frameCount % 15 == 0 && !stop_flying){
+    if(frameCount % 15 == 0 && !dead){
       if(fly == false){
         
         fly = true;

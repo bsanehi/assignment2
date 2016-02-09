@@ -8,7 +8,13 @@ class Score extends GameObject{
   
   Score(){
     flashing = false;
-    high_score = parseInt(high_data.get(0).score);
+    
+    try{
+      high_score = parseInt(high_data.get(0).score);
+    }catch(Exception e){
+      high_score = 0;
+    }
+    
     score_flash = 0;
     num_of_flash = 0;
     score = 0;
