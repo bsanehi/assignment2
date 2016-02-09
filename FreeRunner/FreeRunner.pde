@@ -86,6 +86,8 @@ boolean spawn_mushroom;
 boolean spawn_time;
 int time;
 
+float add_pterodactyl_speed;
+
 
 boolean game_in_color;
 Leaderboard leaderboard;
@@ -174,6 +176,8 @@ void setup(){
   spawn_time = false;
   time = 0;
   
+  add_pterodactyl_speed = 0.5f;
+  
 }// end setup
 
 
@@ -209,6 +213,7 @@ void game_color(){
 
 
 void reset_game(){
+  
    time = 0;
    restart = true;
    dead = false;
@@ -216,7 +221,7 @@ void reset_game(){
    object_creation = 60;
    spawn_wait = false;
    mushroom_taken = false;
-  // make_mushroom = false;
+   add_pterodactyl_speed = 0.5f;
    game_in_color = false;   
    
 }// end reset_game
@@ -248,6 +253,7 @@ void draw(){
     sub_menu_2.render();
     sub_menu_3.render();
   }
+  
   
   if(show_leaderboard == true){
     leaderboard.render();
@@ -314,7 +320,7 @@ void draw(){
        }
        
        if(go instanceof Pterodactyl){
-          go.speed = game_speed + 0.5;
+          go.speed = game_speed + add_pterodactyl_speed;
        }
        
        if(go instanceof Score){
@@ -350,7 +356,7 @@ void draw(){
            if(points >= 600){
                 
               if((int)random(1,3) == 1){
-                 Pterodactyl pterodactyl = new Pterodactyl(width, random(ground_y- 75, ground_y -20), 0.4, game_speed + 0.5, color(pterodactyl_c));
+                 Pterodactyl pterodactyl = new Pterodactyl(width, random(ground_y- 75, ground_y -20), 0.4, game_speed + add_pterodactyl_speed, color(pterodactyl_c));
                  gameObjects.add(pterodactyl);      
               }
               else{
@@ -426,24 +432,6 @@ void draw(){
 
 
 
-
-void make_some_mushroom(){
-      
-   Mushroom mushroom = new Mushroom(width, ground_y - 20, 0.3);
-   gameObjects.add(mushroom); 
-         
-   // when Mushroom spawns wait 5 seconds before spawning anything else    
-   if( time == 250 && spawn_wait == true && spawn_time) {
-       spawn_wait = false;
-       spawn_time = false;
-    }
-    
-   spawn_mushroom = false;
-}
-
-
-
-  
 void mousePressed() {
   
    if(dead){
@@ -604,6 +592,7 @@ void checkCollisions(){
 void died(){
   
    game_speed = 0; 
+   add_pterodactyl_speed = 0;
    dead = true;
 }
 
