@@ -1,4 +1,4 @@
-class Game_over extends GameObject{
+class Game_over extends GameObject implements GameOver{
   
   PShape part1, part2;
   

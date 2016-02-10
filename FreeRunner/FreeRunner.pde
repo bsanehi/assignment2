@@ -598,6 +598,7 @@ void died(){
 
 
 
+
 void input_name_area(){
   
    fill(text_c);
