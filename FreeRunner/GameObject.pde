@@ -4,17 +4,14 @@ abstract class GameObject
   PShape objects;
   PVector pos;
   
-  String text;
-  
-  float speed = 1;
   color c; 
+  float speed = 1;
   
   float scale;
+  String text;
   
   AudioPlayer player1;
   AudioPlayer player2;
-  
-  final float GRAVITY = 8;
   
   GameObject()
   {

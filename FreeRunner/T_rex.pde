@@ -23,6 +23,7 @@ class T_rex extends GameObject {
       head = createShape();
       head.beginShape();
      // head.noStroke();
+      head.stroke(0);
       head.fill(c);
       head.vertex(8, 0);
       head.vertex(55,0);
@@ -246,6 +247,7 @@ class T_rex extends GameObject {
       legs1 = createShape();
       legs1.beginShape();
      // legs1.noStroke();
+      legs1.stroke(0);
       legs1.fill(t_rex_c);
       legs1.vertex(3,126);
       legs1.vertex(3,150);
@@ -334,7 +336,6 @@ class T_rex extends GameObject {
       eye2.vertex(22,22);
       eye2.vertex(10,22);
       eye2.vertex(10,10);
-      eye2.vertex(10,10);
       eye2.scale(1.2);
       eye2.endShape();
       
@@ -409,8 +410,6 @@ class T_rex extends GameObject {
   
   
   void render(){
-    
-     //objects = new PShape();
     
     if(dead){   
          objects = new PShape();

@@ -2,9 +2,9 @@ class Score extends GameObject{
   
   int score;
   int high_score;
-  boolean flashing;
   int score_flash;
   int num_of_flash;
+  boolean flashing;
   
   Score(){
     flashing = false;

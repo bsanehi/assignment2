@@ -1,4 +1,4 @@
-class Game_over extends GameObject implements GameOver{
+class Game_over extends GameObject{
   
   PShape part1, part2;
   
@@ -111,9 +111,6 @@ class Game_over extends GameObject implements GameOver{
     }
   }
   
-  void remove_gameover(){
-    gameObjects.remove(this);
-  }
   
   void update(){
     

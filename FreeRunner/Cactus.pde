@@ -221,7 +221,6 @@ class Cactus extends GameObject{
     part9.vertex(220,200);
     part9.endShape();
     
-    
     part10_w_bg = createShape();
     part10_w_bg.beginShape();
     part10_w_bg.noStroke();
