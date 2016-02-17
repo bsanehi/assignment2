@@ -572,9 +572,6 @@ void save_high_score(String text) {
       output.println(data.name + "," + data.score);
     }
 
-    for (int i = 0; i<temp.size(); i++) {
-      output.println(temp.get(i).name + "," + temp.get(i).score);
-    }
   } else {
     output.println(temp_string);
   }
@@ -643,14 +640,15 @@ void keyPressed()
     }
   }
 
-  if (keyIndex == -1) {
-    // do nothing
-  } else { 
 
+  if (keyIndex != -1) {
+    
     if (text.length() <= 13) {
       text = text + key;
     }
+    
   }
+  
 }
 
 void keyReleased()
