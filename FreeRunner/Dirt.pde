@@ -1,4 +1,4 @@
-class Dirt extends GameObject {
+class Dirt extends GameObject implements Speed_change {
   
   PShape dirt_object;
   

@@ -1,4 +1,4 @@
-class Bumps extends GameObject{
+class Bumps extends GameObject implements Speed_change {
   
   PShape part1, part2, part3, part4, part5, part6;
   

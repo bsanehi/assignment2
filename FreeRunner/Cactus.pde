@@ -1,4 +1,4 @@
-class Cactus extends GameObject{
+class Cactus extends GameObject implements Speed_change{
   
   PShape part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12, part1_w_bg,  part4_w_bg, part7_w_bg, part7_w_bg_2, part10_w_bg;
   
@@ -403,7 +403,7 @@ class Cactus extends GameObject{
   }// end Cactus()
   
   
-   void speed(float game_speed){
+  void speed(float game_speed){
     this.speed = game_speed;
   }
   

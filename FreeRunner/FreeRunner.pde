@@ -116,7 +116,6 @@ void setup() {
   // used to show collision detection code bewteen T-rex and Cactus : it may slow down game if set to "true" - as it will need to render other shapes.
   show_collision = false;
   
-  
 }// end setup
 
 

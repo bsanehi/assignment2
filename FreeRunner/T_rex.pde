@@ -5,13 +5,14 @@ class T_rex extends GameObject {
   boolean jumped;
   boolean running;
   boolean ducking;
-  float jump_height;
   boolean standing;
   boolean air_time;
+  
   final float INITIAL_JUMP_VELOCITY = 12;
   final int MIN_JUMP_HEIGHT = 120;
   
   float save_pos;
+  float jump_height;
   
   PShape body, lowbody, head, lowhead, mouth1, mouth2, low_mouth, legs1, legs2, legs3, eye1, eye2, eyeBall, loweye, white_bg, arm, lowlegs2, lowlegs3;
   
